@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Dashboard</title>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+    :root {
+      --primary-color: #38e07b;
+      --secondary-color: #034d20;
+      --background-color: #357750;
+      --text-primary: #fffefe;
+      --text-secondary: #a0a0a0;
+      --accent-color: #28a058;
+    }
+    body {
+      font-family: 'Spline Sans', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-primary);
+    }
+    </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
+<div class="flex min-h-screen">
+<aside class="w-64 bg-[var(--secondary-color)] p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-3 mb-10">
+<span class="material-symbols-outlined text-[var(--primary-color)] text-4xl">
+                        health_and_safety
+                    </span>
+<h1 class="text-white text-xl font-bold">My Pharmacy</h1>
+</div>
+<nav class="flex flex-col gap-3">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-[var(--accent-color)] text-white font-medium" href="#">
+<span class="material-symbols-outlined">
+                            dashboard
+                        </span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 text-[var(--text-secondary)] hover:text-white font-medium" href="#">
+<span class="material-symbols-outlined">
+                            pill
+                        </span>
+<span>Prescriptions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 text-[var(--text-secondary)] hover:text-white font-medium" href="#">
+<span class="material-symbols-outlined">
+                            history
+                        </span>
+<span>Order History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 text-[var(--text-secondary)] hover:text-white font-medium" href="#">
+<span class="material-symbols-outlined">
+                            person
+                        </span>
+<span>Profile</span>
+</a>
+</nav>
+</div>
+<div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 text-[var(--text-secondary)] hover:text-white font-medium" href="#">
+<span class="material-symbols-outlined">
+                        logout
+                    </span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-10 overflow-y-auto">
+<header class="flex justify-between items-center mb-10">
+<div>
+<h1 class="text-4xl font-bold text-white">Patient Dashboard</h1>
+<p class="text-[var(--text-secondary)] mt-1">Welcome back, Sarah. Here's your health overview.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative text-[var(--text-secondary)] hover:text-white">
+<span class="material-symbols-outlined">
+                            notifications
+                        </span>
+<span class="absolute -top-1 -right-1 flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary-color)] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-[var(--primary-color)]"></span>
+</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFdW9eE7_Id76yzPVt2z0BfNPB6eWsJ_GIgGTVEVO0XfJ7rrpTC2x8fRdUJ5dL3-RN7dbNT3icL57lWaVFVg3vjiMZBeunkdl9L2QMtX_P5_JI4RLOUagG_uHFLP8IpAqvor_9ZnPQ16_BYMTcQByLdkCfA1E8wk_G8gwU7_QGPBHpoSDEzeFmLDnYg41hwTdnCO7hUZ-4prC3Fuvjxw5AA0Miz6MjGC3pbsf6xv-4rZdUGbAKpW4l5IvLojb1RpXFFBxaxZts-g");'></div>
+</div>
+</header>
+<div class="grid grid-cols-1 @container lg:grid-cols-3 gap-8">
+<section class="lg:col-span-2">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-[var(--primary-color)]">pill</span>
+                            Prescription History
+                        </h2>
+<a class="text-[var(--primary-color)] hover:underline font-medium" href="#">View All</a>
+</div>
+<div class="space-y-4">
+<div class="bg-[var(--secondary-color)] rounded-xl p-4 flex items-center justify-between transition-all hover:bg-gray-700/50">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 bg-center bg-no-repeat bg-cover rounded-lg" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXUXGs4ROXboE-d380HqDxVee78BEcL0xd29d3FkQaSvL7mixh_-NUJuoTDczpBwNVbye9-ugaYaHNYRWXJ7qBkeMWHIIS8pw1AQbw0sMFGjC6n7E6MQueuQ0LiqjIGZrvq9gShI9EvXTv5OUxCNOSiKrwroGHPg7tBIMlbTALlry8f99jeRqNsTjYg4B05v7soVsLkJfZDCmDRpAuKTS2cZAhnu_QPyFHPjDAiipBjBjIxeq0H3M1jQyzA62tcDXIN5wgJYfvDg");'></div>
+<div>
+<p class="text-lg font-bold text-white">Atorvastatin</p>
+<p class="text-[var(--text-secondary)] text-sm">Refill due in 5 days</p>
+</div>
+</div>
+<button class="bg-[var(--primary-color)] text-sm text-black rounded-full px-5 py-2 font-semibold hover:bg-[var(--accent-color)] transition-colors duration-200">Request Refill</button>
+</div>
+<div class="bg-[var(--secondary-color)] rounded-xl p-4 flex items-center justify-between transition-all hover:bg-gray-700/50">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 bg-center bg-no-repeat bg-cover rounded-lg" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAa-jTeK1BXeuyqZfMqYb6bg6_ND8BWF6sl_CYJLGxtUDPp4udFWoBR9MxqCnatij9olTs_gdFcPrnX3LUQNZ2SsLft2q1-j8PKRuZPltO6YG1ntnJp4jSa1UlTjvOLXK4oQoX1kePvECk_05-y0EesEwPSJaJUASbRMyqmecgET_e2UQF_Nnfsq3Wy74rgweA6USpeN4rnK0T7iFlD_b0JsZH05YbYOlaMhX5ncudWysFhqgqGFE8pwrwZ84hAsbWtCFCvLyanVw");'></div>
+<div>
+<p class="text-lg font-bold text-white">Lisinopril</p>
+<p class="text-[var(--text-secondary)] text-sm">30-day supply</p>
+</div>
+</div>
+<button class="bg-gray-600 text-sm text-white rounded-full px-5 py-2 font-semibold cursor-not-allowed">Refill not due</button>
+</div>
+</div>
+<div class="flex items-center justify-between mt-10 mb-6">
+<h2 class="text-2xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-[var(--primary-color)]">history</span>
+                            Order History
+                        </h2>
+<a class="text-[var(--primary-color)] hover:underline font-medium" href="#">View All</a>
+</div>
+<div class="bg-[var(--secondary-color)] rounded-xl overflow-hidden">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-gray-700">
+<th class="p-4 font-semibold text-sm text-white">Order ID</th>
+<th class="p-4 font-semibold text-sm text-white">Date</th>
+<th class="p-4 font-semibold text-sm text-white">Status</th>
+<th class="p-4 font-semibold text-sm text-white text-right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-gray-700">
+<td class="p-4 text-[var(--text-secondary)]">#74682</td>
+<td class="p-4 text-[var(--text-secondary)]">2024-07-20</td>
+<td class="p-4"><span class="bg-blue-500/20 text-blue-400 text-xs font-medium px-3 py-1 rounded-full">Shipped</span></td>
+<td class="p-4 text-[var(--text-secondary)] text-right">$45.00</td>
+</tr>
+<tr class="border-b border-gray-700">
+<td class="p-4 text-[var(--text-secondary)]">#74681</td>
+<td class="p-4 text-[var(--text-secondary)]">2024-07-15</td>
+<td class="p-4"><span class="bg-green-500/20 text-green-400 text-xs font-medium px-3 py-1 rounded-full">Delivered</span></td>
+<td class="p-4 text-[var(--text-secondary)] text-right">$22.50</td>
+</tr>
+<tr>
+<td class="p-4 text-[var(--text-secondary)]">#74680</td>
+<td class="p-4 text-[var(--text-secondary)]">2024-07-10</td>
+<td class="p-4"><span class="bg-yellow-500/20 text-yellow-400 text-xs font-medium px-3 py-1 rounded-full">Processing</span></td>
+<td class="p-4 text-[var(--text-secondary)] text-right">$67.50</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<aside class="lg:col-span-1">
+<h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-[var(--primary-color)]">person</span>
+                        Personal Information
+                    </h2>
+<div class="bg-[var(--secondary-color)] rounded-xl p-6 space-y-6">
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]">Full Name</label>
+<p class="text-white font-semibold mt-1">Sarah Johnson</p>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]">Date of Birth</label>
+<p class="text-white font-semibold mt-1">October 23, 1985</p>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]">Email Address</label>
+<p class="text-white font-semibold mt-1">sarah.j@email.com</p>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]">Shipping Address</label>
+<p class="text-white font-semibold mt-1">123 Health St, Wellness City, 45678</p>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]">Insurance Provider</label>
+<p class="text-white font-semibold mt-1">MediCare Plus</p>
+</div>
+<button class="w-full bg-[var(--accent-color)]/20 text-[var(--primary-color)] py-3 rounded-lg font-semibold hover:bg-[var(--accent-color)]/30 transition-colors duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">edit</span>
+                            Edit Profile
+                        </button>
+</div>
+</aside>
+</div>
+</main>
+</div>
+
+</body></html>

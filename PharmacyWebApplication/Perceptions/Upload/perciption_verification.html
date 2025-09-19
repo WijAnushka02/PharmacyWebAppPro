@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediCheck - Prescription Verification</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+    :root {
+      --primary-color: #34D399;
+      --secondary-color: #fef2f2;
+      --background-color: #ffffff;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --accent-color: #fca5a5;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-primary);
+    }
+    .priority-high {
+      background-color: #fee2e2;
+      color: #b91c1c;
+    }
+    .priority-medium {
+      background-color: #ffedd5;
+      color: #c2410c;
+    }
+    .priority-low {
+      background-color: #dbeafe;
+      color: #1d4ed8;
+    }
+  </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
+<div class="flex flex-col min-h-screen">
+<header class="bg-white shadow-sm sticky top-0 z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<div class="text-[var(--primary-color)]">
+<svg class="h-8 w-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold text-[var(--text-primary)]">MediCare</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Dashboard</a>
+<a class="text-sm font-medium text-[var(--primary-color)] border-b-2 border-[var(--primary-color)] pb-1" href="#">Prescriptions</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Patients</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Inventory</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Reports</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="aspect-square rounded-full size-10 bg-center bg-no-repeat bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDoh8C68Mo4nwgKpuXqUT6Bs9qWzmoRg8xkX7Eirk0FvKKIv_Ia_zp8L87Pf450amMZ3WwgTa4LFqnN-TTB7oQbjTn07whH1ZavAC7TEyh5cvQ3eHyFX4HcexoVMD0SoJeYzSxKpw59y-iOti3OKJ42IEX2P6M_YNdxR7dJHJsJ755oRXibiOZND7l7IzCTzNQhJmMjyTpKTrfDDy4oXlwIryrBTxDAL2UJMyU-b2c2MyqItTtbYI96P_6ghfrn2C98Vvxv07Y41g");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-6">
+<h2 class="text-3xl font-bold text-[var(--text-primary)]">Prescription Verification</h2>
+<p class="text-[var(--text-secondary)] mt-1">Review and verify pending prescriptions.</p>
+</div>
+<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+<div class="relative w-full md:max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]">search</span>
+<input class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]" placeholder="Search by patient name or Rx ID..." type="text"/>
+</div>
+<div class="flex items-center gap-3 flex-wrap">
+<div class="relative">
+<select class="appearance-none bg-gray-50 border border-gray-300 text-[var(--text-secondary)] text-sm rounded-lg focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] block w-full pl-3 pr-10 py-2">
+<option selected="">All Priorities</option>
+<option value="High">High</option>
+<option value="Medium">Medium</option>
+<option value="Low">Low</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)] pointer-events-none">expand_more</span>
+</div>
+<input class="bg-gray-50 border border-gray-300 text-[var(--text-secondary)] text-sm rounded-lg focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] block w-full py-2 px-3" type="date"/>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-[var(--text-secondary)]">
+<thead class="text-xs text-[var(--text-secondary)] uppercase bg-gray-50">
+<tr>
+<th class="px-6 py-3" scope="col">Prescription ID</th>
+<th class="px-6 py-3" scope="col">Patient Name</th>
+<th class="px-6 py-3" scope="col">Issue Date</th>
+<th class="px-6 py-3 text-center" scope="col">Priority</th>
+<th class="px-6 py-3 text-center" scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX12345</td>
+<td class="px-6 py-4">Sophia Clark</td>
+<td class="px-6 py-4">2024-07-26</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 text-xs font-medium rounded-full priority-high">High</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">Verify</a>
+</td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX67890</td>
+<td class="px-6 py-4">Ethan Miller</td>
+<td class="px-6 py-4">2024-07-25</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 text-xs font-medium rounded-full priority-medium">Medium</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">Verify</a>
+</td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX11223</td>
+<td class="px-6 py-4">Olivia Davis</td>
+<td class="px-6 py-4">2024-07-24</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 text-xs font-medium rounded-full priority-low">Low</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">Verify</a>
+</td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX44556</td>
+<td class="px-6 py-4">Liam Wilson</td>
+<td class="px-6 py-4">2024-07-23</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 text-xs font-medium rounded-full priority-high">High</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">Verify</a>
+</td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX77889</td>
+<td class="px-6 py-4">Ava Martinez</td>
+<td class="px-6 py-4">2024-07-22</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 text-xs font-medium rounded-full priority-medium">Medium</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">Verify</a>
+</td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX99001</td>
+<td class="px-6 py-4">Noah Anderson</td>
+<td class="px-6 py-4">2024-07-21</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 text-xs font-medium rounded-full priority-low">Low</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">Verify</a>
+</td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX22334</td>
+<td class="px-6 py-4">Isabella Thomas</td>
+<td class="px-6 py-4">2024-07-20</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 text-xs font-medium rounded-full priority-high">High</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">Verify</a>
+</td>
+</tr>
+<tr class="bg-white hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX55667</td>
+<td class="px-6 py-4">Jackson Jackson</td>
+<td class="px-6 py-4">2024-07-19</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 text-xs font-medium rounded-full priority-medium">Medium</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">Verify</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<nav aria-label="Table navigation" class="flex items-center justify-between pt-4">
+<span class="text-sm font-normal text-[var(--text-secondary)]">Showing <span class="font-semibold text-[var(--text-primary)]">1-8</span> of <span class="font-semibold text-[var(--text-primary)]">100</span></span>
+<ul class="inline-flex -space-x-px text-sm h-8">
+<li>
+<a class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-[var(--text-secondary)] bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-[var(--text-primary)]" href="#">Previous</a>
+</li>
+<li>
+<a class="flex items-center justify-center px-3 h-8 leading-tight text-[var(--text-secondary)] bg-white border border-gray-300 hover:bg-gray-100 hover:text-[var(--text-primary)]" href="#">1</a>
+</li>
+<li>
+<a class="flex items-center justify-center px-3 h-8 leading-tight text-[var(--text-secondary)] bg-white border border-gray-300 hover:bg-gray-100 hover:text-[var(--text-primary)]" href="#">2</a>
+</li>
+<li>
+<a aria-current="page" class="flex items-center justify-center px-3 h-8 text-[var(--primary-color)] border border-gray-300 bg-[var(--secondary-color)] hover:bg-red-200 hover:text-[var(--primary-color)]" href="#">3</a>
+</li>
+<li>
+<a class="flex items-center justify-center px-3 h-8 leading-tight text-[var(--text-secondary)] bg-white border border-gray-300 hover:bg-gray-100 hover:text-[var(--text-primary)]" href="#">...</a>
+</li>
+<li>
+<a class="flex items-center justify-center px-3 h-8 leading-tight text-[var(--text-secondary)] bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-[var(--text-primary)]" href="#">Next</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</main>
+<footer class="bg-white">
+<div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--text-secondary)]">
+            © 2025 MediCare. All rights reserved.
+        </div>
+</footer>
+</div>
+
+</body></html>

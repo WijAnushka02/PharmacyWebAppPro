@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rejected Prescriptions - MediCorp</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+    :root {
+      --primary-color: #34D399;
+      --secondary-color: #fef2f2;
+      --background-color: #ffffff;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --accent-color: #fca5a5;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
+<div class="flex flex-col min-h-screen">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-gray-200 px-6 sm:px-10 py-4">
+<div class="flex items-center gap-4">
+<div class="text-[var(--primary-color)]">
+<svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.0006 1.5C12.3756 1.5 12.6881 1.7505 12.7446 2.109L13.1361 4.7505C15.0291 5.253 16.6341 6.279 17.8971 7.695L20.0886 6.342C20.4126 6.15 20.8161 6.2415 21.0546 6.5445L22.4556 8.4555C22.6941 8.7585 22.6506 9.1725 22.3716 9.42L20.8491 10.74C21.0666 11.49 21.2166 12.2745 21.2976 13.08L23.7711 13.56C24.1296 13.626 24.3756 13.9425 24.3756 14.319V16.6815C24.3756 17.058 24.1296 17.3745 23.7711 17.4405L21.2976 17.9205C21.2166 18.726 21.0666 19.5105 20.8491 20.2605L22.3716 21.5805C22.6506 21.828 22.6941 22.242 22.4556 22.545L21.0546 24.456C20.8161 24.759 20.4126 24.849 20.0886 24.6585L17.8971 23.3055C16.6341 24.7215 15.0291 25.7475 13.1361 26.25L12.7446 28.8915C12.6881 29.2485 12.3756 29.5 12.0006 29.5H9.0006C8.6256 29.5 8.3131 29.2485 8.2566 28.8915L7.8651 26.25C5.9721 25.7475 4.3671 24.7215 3.1041 23.3055L0.9126 24.6585C0.5886 24.849 0.1851 24.759 0.0534 24.456L-1.3479 22.545C-1.5864 22.242 -1.5429 21.828 -1.2639 21.5805L0.2586 20.2605C0.0411 19.5105 -0.1089 18.726 -0.1899 17.9205L-2.6634 17.4405C-3.0219 17.3745 -3.2679 17.058 -3.2679 16.6815V14.319C-3.2679 13.9425 -3.0219 13.626 -2.6634 13.56L-0.1899 13.08C-0.1089 12.2745 0.0411 11.49 0.2586 10.74L-1.2639 9.42C-1.5429 9.1725 -1.5864 8.7585 -1.3479 8.4555L0.0534 6.5445C0.1851 6.2415 0.5886 6.15 0.9126 6.342L3.1041 7.695C4.3671 6.279 5.9721 5.253 7.8651 4.7505L8.2566 2.109C8.3131 1.7505 8.6256 1.5 9.0006 1.5H12.0006ZM10.5006 10.5V15H14.2506C14.2506 17.07 12.5706 18.75 10.5006 18.75C8.4306 18.75 6.7506 17.07 6.7506 15C6.7506 12.93 8.4306 11.25 10.5006 11.25V10.5Z" transform="translate(3.2679 -1.5)"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight">MediCorp</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition" href="#">Dashboard</a>
+<a class="text-sm font-medium text-[var(--text-primary)] border-b-2 border-[var(--primary-color)] pb-1" href="#">Prescriptions</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition" href="#">Inventory</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition" href="#">Customers</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition" href="#">Reports</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative rounded-full p-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]">
+<span class="material-symbols-outlined text-[var(--text-secondary)]">notifications</span>
+<span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-[var(--primary-color)]"></span>
+</button>
+<img alt="User profile picture" class="h-10 w-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAtaaGiP35VmGO77-plcy01yok8DMNLqPvONH7hBWBZRq7kDv5HM1BMa-zcoDhpE_hscUflRf87F5OSvvM2IlXkiY10nR9MIwbR_QjnwaaFmkJNdjTZ486kJi00W4AhzrXU1AAwpfV1tJiJld-yunMbxIKLdTVCxELZOP495HNI1whkq4Jw3UEvyleUyAuXt2Eo2GkGF0_e90KsdlLdQrN0h5w5aM0wQB_KqaKEX-mgqCs-Wz--ecFIhsIsE8uQr3esgTlDYdRYw"/>
+</div>
+</header>
+<main class="flex-1">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+<h2 class="text-3xl font-bold text-[var(--text-primary)]">Rejected Prescriptions</h2>
+<div class="flex items-center gap-2">
+<button class="bg-[var(--secondary-color)] text-[var(--primary-color)] border border-[var(--primary-color)] px-4 py-2 rounded-md hover:bg-[var(--primary-color)] hover:text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition duration-300 ease-in-out flex items-center gap-2">
+<span class="material-symbols-outlined text-base">download</span>
+                Export CSV
+            </button>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+<div class="md:col-span-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] sm:text-sm" placeholder="Search by ID, patient, or pharmacist..." type="text"/>
+</div>
+</div>
+<div>
+<select class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] sm:text-sm">
+<option>Filter by Pharmacist</option>
+<option>Dr. Sarah Lee</option>
+<option>Dr. Robert Green</option>
+</select>
+</div>
+<div>
+<select class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] sm:text-sm">
+<option>Filter by Reason</option>
+<option>Incorrect dosage</option>
+<option>Missing information</option>
+<option>Contraindication</option>
+</select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-gray-200">
+<thead class="bg-gray-50">
+<tr>
+<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Prescription ID</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Patient Name</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Pharmacist</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Date Rejected</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Reason for Rejection</th>
+<th class="relative px-6 py-3" scope="col">
+<span class="sr-only">Actions</span>
+</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">RX12345</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Emily Carter</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Dr. Sarah Lee</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">2024-03-15</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Incorrect dosage</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-red-700" href="#">Details</a>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">RX67890</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">David Chen</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Dr. Robert Green</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">2024-03-14</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Missing information</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-red-700" href="#">Details</a>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">RX11223</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Olivia Davis</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Dr. Sarah Lee</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">2024-03-13</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Contraindication</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-red-700" href="#">Details</a>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">RX44556</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Ethan Foster</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Dr. Robert Green</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">2024-03-12</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Invalid prescription</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-red-700" href="#">Details</a>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">RX77889</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Sophia Grant</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Dr. Sarah Lee</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">2024-03-11</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">Out of stock</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-red-700" href="#">Details</a>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">RX99001</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Liam Hayes</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">Dr. Robert Green</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">2024-03-10</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Patient not found</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-[var(--primary-color)] hover:text-red-700" href="#">Details</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 mt-4">
+<div class="flex flex-1 justify-between sm:hidden">
+<a class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href="#">Previous</a>
+<a class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" href="#">Next</a>
+</div>
+<div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-[var(--text-secondary)]">
+                            Showing
+                            <span class="font-medium">1</span>
+                            to
+                            <span class="font-medium">6</span>
+                            of
+                            <span class="font-medium">10</span>
+                            results
+                        </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+<a class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</a>
+<a aria-current="page" class="relative z-10 inline-flex items-center bg-[var(--accent-color)] text-[var(--primary-color)] px-4 py-2 text-sm font-semibold focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary-color)]" href="#">1</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0" href="#">2</a>
+<a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<footer class="bg-white">
+<div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--text-secondary)]">
+            © 2025 MediCare. All rights reserved.
+        </div>
+</footer>
+</div>
+
+
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Special Offers - MediCare Pharmacy</title>
+  <link rel="stylesheet" href="offers.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="logo">MediCare</div>
+    <nav class="nav-links">
+      <a href="../Home/index.html">Home</a>
+      <a href="#">Medications</a>
+      <a href="#" class="active">Offers</a>
+    </nav>
+    <div class="header-icons">
+      <span class="cart-icon">🛒</span>
+    </div>
+  </header>
+
+  <!-- ===== HERO BANNER ===== -->
+  <section class="hero-banner">
+    <h1>50% Off All Vitamins</h1>
+    <p>Grab your daily health essentials at unbeatable prices!</p>
+  </section>
+
+  <!-- ===== FILTER & SORT BAR ===== -->
+  <section class="filter-sort">
+    <select id="filter-category">
+      <option value="all">All Categories</option>
+      <option value="vitamins">Vitamins</option>
+      <option value="skincare">Skincare</option>
+      <option value="pain">Pain Relief</option>
+    </select>
+
+    <select id="sort-by">
+      <option value="newest">Newest</option>
+      <option value="low-high">Price: Low to High</option>
+      <option value="high-low">Price: High to Low</option>
+    </select>
+  </section>
+
+  <!-- ===== OFFERS GRID ===== -->
+  <main class="offers-grid" id="offersGrid">
+    <!-- Example Card -->
+    <div class="offer-card" data-category="vitamins" data-price="15">
+      <img src="images/vitamin-c.jpg" alt="Vitamin C">
+      <h3>Vitamin C 500mg</h3>
+      <p class="price">$15 <span class="old-price">$30</span></p>
+      <button>Shop Now</button>
+    </div>
+
+    <div class="offer-card" data-category="skincare" data-price="25">
+      <img src="images/moisturizer.jpg" alt="Moisturizer">
+      <h3>Hydrating Moisturizer</h3>
+      <p class="price">$25 <span class="old-price">$40</span></p>
+      <button>Shop Now</button>
+    </div>
+
+    <div class="offer-card" data-category="pain" data-price="12">
+      <img src="images/pain-relief.jpg" alt="Pain Relief">
+      <h3>Pain Relief Gel</h3>
+      <p class="price">$12 <span class="old-price">$20</span></p>
+      <button>Shop Now</button>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="new-footer">
+        <div class="new-footer-content">
+            <div class="new-footer-left">
+                <h2>MediCare Pharmacy</h2>
+                <p>123 Health St, Wellness City, 12345</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Email: contact@medicare.com</p>
+            </div>
+            <div class="new-footer-center">
+                <nav>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </nav>
+            </div>
+            <div class="new-footer-right">
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-text">
+            © 2025 MediCare Pharmacy. All rights reserved.
+        </div>
+    </footer>
+
+  <script src="offers.js"></script>
+</body>
+</html>

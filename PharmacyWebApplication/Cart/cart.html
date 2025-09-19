@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Shopping Cart - MediCare</title>
+  <link rel="stylesheet" href="cart.css">
+</head>
+<body class="cart-page">
+
+  <header class="site-header">
+    <div class="logo">MediCare</div>
+    <nav class="nav-links">
+      <a href="../../Home/home1/index.html">Home</a>
+      <a href="../../medications/public/index.html">Medications</a>
+      <a href="../../Home/offers/offers.html">Offers</a>
+    </nav>
+    <div class="header-icons">
+      <a href="cart.html" class="cart-icon">🛒</a>
+    </div>
+  </header>
+
+  <main class="cart-container">
+    <div id="emptyCart" class="empty-cart">
+      <p>Your cart is empty. Please add items to continue.</p>
+      <a href="medications.html" class="btn">Start Shopping</a>
+    </div>
+
+    <div id="cartContent" class="cart-content">
+      <aside class="cart-summary">
+        <h2>Order Summary</h2>
+        <div id="cartItems" class="order-summary-items">
+            </div>
+        <hr>
+        <p class="total">Total: <span id="total">Rs. 0.00</span></p>
+        <button class="checkout-btn">Proceed to Checkout</button>
+      </aside>
+    </div>
+  </main>
+
+  <script src="cart.js"></script>
+</body>
+</html>

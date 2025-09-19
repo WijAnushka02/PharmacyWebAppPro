@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+    :root {
+      --primary-color: #34D399;
+      --secondary-color: #fef2f2;
+      --background-color: #ffffff;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --accent-color: #fca5a5;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+<div class="flex min-h-screen flex-col bg-[var(--background-color)]">
+<header class="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-3">
+<div class="flex items-center gap-4">
+<div class="size-8 text-[var(--primary-color)]">
+<svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"></path></svg>
+</div>
+<h2 class="text-xl font-bold text-[var(--text-primary)]">MediCare</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium text-[var(--primary-color)]" href="#">Prescriptions</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="#">Inventory</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="#">Patients</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative rounded-full p-2 text-[var(--text-secondary)] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="relative">
+<button class="flex items-center gap-2">
+<div class="size-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6pwHDYxSkgALHtnCMp3VhVCUmnDc_Seuffy4UDpR4lR4hJETal2ojlF7fe4TsAAeEIKO-PgwKAb7GOF45UgNwKMwQx4XwwxL3Bn1nvJpC534JeZ1BZUC67AA4T18SEJ_kObFdTlE8FRQS05EDdDKF4kFEw1EHgd2eDY3BS9-HcVQ5qEpGxLc3xmAtaFaj1YnnXt45akkEOODiAqmVvDQnQnYdwszzuNJ-6jhRZHKg6s1lQpk-YtziLR4Fs0vnq_SWFRj7BlXmVQ");'></div>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-6">
+<nav aria-label="Breadcrumb" class="flex">
+<ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+<li class="inline-flex items-center">
+<a class="inline-flex items-center text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">
+<span class="material-symbols-outlined mr-2">home</span>
+                        Prescriptions
+                    </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-gray-400">chevron_right</span>
+<span class="ms-1 text-sm font-medium text-[var(--text-primary)] md:ms-2">Prescription Details</span>
+</div>
+</li>
+</ol>
+</nav>
+<h1 class="text-3xl font-bold text-[var(--text-primary)] mt-2">Prescription #12045</h1>
+<p class="text-base text-[var(--text-secondary)]">Review and verify the prescription before dispensing.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-white rounded-lg shadow-sm border border-gray-200">
+<div class="p-6">
+<h2 class="text-xl font-bold text-[var(--text-primary)] mb-4">Scanned Prescription</h2>
+</div>
+<div class="p-6 pt-0">
+<div class="w-full bg-center bg-no-repeat bg-cover aspect-[4/3] rounded-md border" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBBszULdH6E_x33GPumNN50xqy2FCSIdSN5hzs8HthxtcDTi1vzuD3goo51P-IPdF1Bh34OBEZF2IciEVWSFHgXYOuPtPdW8sUFkXEze3H-7KseQWyPiQ1mttlu6bqMqVGvRK-tjKhBam8qUUANhxcy70m56ugiACnypBm5R4SnQR3rcTArN5PHv2KKY1idMVc8csKnxVTIcIRAulIt7Zr4ZpurL6Jx9QL-O8bKh3dRR9ysspwnOnc79z-Ijw-MRMZ1a4TGj69oEg");'></div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm border border-gray-200">
+<div class="p-6">
+<h2 class="text-xl font-bold text-[var(--text-primary)] mb-4">Patient Information</h2>
+</div>
+<div class="border-t border-gray-200 px-6 py-4">
+<dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-6">
+<div class="sm:col-span-1">
+<dt class="text-sm font-medium text-[var(--text-secondary)]">Patient Name</dt>
+<dd class="mt-1 text-sm text-[var(--text-primary)] font-semibold">Sophia Clark</dd>
+</div>
+<div class="sm:col-span-1">
+<dt class="text-sm font-medium text-[var(--text-secondary)]">Date of Birth</dt>
+<dd class="mt-1 text-sm text-[var(--text-primary)]">1985-08-15 (38 years)</dd>
+</div>
+<div class="sm:col-span-2">
+<dt class="text-sm font-medium text-[var(--text-secondary)]">Address</dt>
+<dd class="mt-1 text-sm text-[var(--text-primary)]">123 Elm Street, Anytown, USA</dd>
+</div>
+</dl>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm border border-gray-200">
+<div class="p-6">
+<h2 class="text-xl font-bold text-[var(--text-primary)] mb-4">Prescribed Medicines</h2>
+</div>
+<div class="overflow-x-auto">
+<table class="min-w-full text-left text-sm">
+<thead class="border-b border-gray-200 bg-gray-50">
+<tr>
+<th class="px-6 py-3 font-semibold text-[var(--text-primary)]" scope="col">Medicine</th>
+<th class="px-6 py-3 font-semibold text-[var(--text-primary)]" scope="col">Dosage</th>
+<th class="px-6 py-3 font-semibold text-[var(--text-primary)]" scope="col">Quantity</th>
+<th class="px-6 py-3 font-semibold text-[var(--text-primary)]" scope="col">Refills</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-gray-200">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)]">Amoxicillin</td>
+<td class="px-6 py-4 text-[var(--text-secondary)]">500mg</td>
+<td class="px-6 py-4 text-[var(--text-secondary)]">30 capsules</td>
+<td class="px-6 py-4 text-[var(--text-secondary)]">2</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-medium text-[var(--text-primary)]">Ibuprofen</td>
+<td class="px-6 py-4 text-[var(--text-secondary)]">200mg</td>
+<td class="px-6 py-4 text-[var(--text-secondary)]">60 tablets</td>
+<td class="px-6 py-4 text-[var(--text-secondary)]">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="sticky top-28 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+<h2 class="text-xl font-bold text-[var(--text-primary)] mb-4">Pharmacist Review</h2>
+<div>
+<label class="block text-sm font-medium text-[var(--text-secondary)] mb-2" for="pharmacist-notes">Notes</label>
+<textarea class="block w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-[var(--text-primary)] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] transition duration-150 ease-in-out sm:text-sm" id="pharmacist-notes" name="pharmacist-notes" placeholder="Add notes, flags, or comments for the record..." rows="6"></textarea>
+</div>
+<div class="mt-6 flex flex-col gap-3">
+<button class="w-full bg-[var(--primary-color)] text-white px-6 py-3 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition duration-200 ease-in-out font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">check_circle</span>
+                    Approve
+                  </button>
+<button class="w-full bg-[var(--secondary-color)] text-[var(--primary-color)] border border-[var(--primary-color)] px-6 py-3 rounded-md hover:bg-[var(--primary-color)] hover:text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition duration-200 ease-in-out font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">cancel</span>
+                    Reject
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<footer class="bg-white">
+<div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--text-secondary)]">
+            © 2025 MediCare. All rights reserved.
+        </div>
+</footer>
+</div>
+
+</body></html>

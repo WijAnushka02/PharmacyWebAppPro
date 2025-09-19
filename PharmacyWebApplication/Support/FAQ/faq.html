@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Pharmacy - Live FAQ Chat</title>
+  <style>
+    body {
+      background: #0d1117;
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      color: white;
+    }
+
+    /* Header */
+    .head {
+      width: 100%;
+      background: linear-gradient(90deg, #2ecc71, #27ae60);
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: bold;
+      box-shadow: 0px 5px 15px rgba(46, 204, 113, 0.3);
+    }
+
+    /* Chat container */
+    .chat-container {
+      flex: 1;
+      padding: 25px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .message {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .message img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .bubble {
+      padding: 16px 20px;
+      border-radius: 20px;
+      max-width: 70%;
+      font-size: 18px;
+      line-height: 1.6;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .user .bubble {
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      color: white;
+      border-radius: 20px 20px 20px 8px;
+    }
+
+    .admin {
+      flex-direction: row-reverse;
+    }
+
+    .admin .bubble {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      border-radius: 20px 20px 8px 20px;
+    }
+
+    /* Input area */
+    .chat-input {
+      display: flex;
+      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 16px 20px;
+      border: none;
+      border-radius: 30px;
+      outline: none;
+      font-size: 18px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .chat-input button {
+      margin-left: 15px;
+      padding: 16px 26px;
+      border: none;
+      border-radius: 30px;
+      background: #2ecc71;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .chat-input button:hover {
+      background: #27ae60;
+      transform: scale(1.05);
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="head">Online Pharmacy Live FAQ</div>
+
+  <!-- Chat -->
+  <div class="chat-container" id="chatBox">
+    <!-- Example messages -->
+    <div class="message user">
+      <img src="customer.png" alt="Customer">
+      <div class="bubble">What are your opening hours?</div>
+    </div>
+    <div class="message admin">
+      <img src="admin.png" alt="Admin">
+      <div class="bubble">We are open Mon–Sat: 8 AM – 9 PM, Sunday: 9 AM – 6 PM.</div>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Type your question...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chatBox");
+    const userInput = document.getElementById("userInput");
+
+    // Predefined answers
+    const faqAnswers = {
+      "services": "We provide prescription medicines, OTC products, supplements, and vaccinations.",
+      "hours": "We are open Mon–Sat: 8 AM – 9 PM, Sunday: 9 AM – 6 PM.",
+      "delivery": "Yes, we provide free delivery within 5km, small fee applies beyond that.",
+      "payment": "We accept cash, cards, mobile payments, and insurance.",
+      "return": "Due to safety laws, medicines cannot be returned unless damaged or incorrect."
+    };
+
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (text === "") return;
+
+      // Add user message
+      const userMsg = document.createElement("div");
+      userMsg.className = "message user";
+      userMsg.innerHTML = `<img src="customer.png" alt="Customer"><div class="bubble">${text}</div>`;
+      chatBox.appendChild(userMsg);
+
+      // Auto reply (simple match)
+      setTimeout(() => {
+        let reply = "Sorry, I don’t have an answer for that. Please contact our pharmacist.";
+        for (let key in faqAnswers) {
+          if (text.toLowerCase().includes(key)) {
+            reply = faqAnswers[key];
+          }
+        }
+
+        const adminMsg = document.createElement("div");
+        adminMsg.className = "message admin";
+        adminMsg.innerHTML = `<img src="admin.png" alt="Admin"><div class="bubble">${reply}</div>`;
+        chatBox.appendChild(adminMsg);
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 800);
+
+      // Clear input
+      userInput.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Press Enter to send
+    userInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+  </script>
+</body>
+</html>

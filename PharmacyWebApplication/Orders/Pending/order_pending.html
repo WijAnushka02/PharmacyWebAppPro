@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #ec1313;
+        --secondary-color: #fef2f2;
+        --background-color: #ffffff;
+        --text-primary: #1a1a1a;
+        --text-secondary: #4a4a4a;
+        --accent-color: #fca5a5;
+        --radius-sm: 0.125rem;
+        --radius-md: 0.375rem;
+        --radius-lg: 0.5rem;
+        --radius-xl: 0.75rem;
+        --radius-2xl: 1rem;
+        --radius-3xl: 1.5rem;
+        --radius-full: 9999px;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-primary);
+      }
+    </style>
+</head>
+<body>
+<div class="relative flex size-full min-h-screen flex-col bg-background-color group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 px-10 py-4">
+<div class="flex items-center gap-4 text-primary">
+<div class="text-primary-color size-8">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-2xl font-bold tracking-tight text-primary">HealthPlus</h2>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-secondary hover:text-primary-color transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-secondary hover:text-primary-color transition-colors" href="#">Services</a>
+<a class="text-sm font-medium text-secondary hover:text-primary-color transition-colors" href="#">Medications</a>
+<a class="text-sm font-medium text-secondary hover:text-primary-color transition-colors" href="#">Supplies</a>
+<a class="text-sm font-medium text-secondary hover:text-primary-color transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-secondary-color text-primary hover:bg-accent-color/50 transition-colors">
+<span class="material-symbols-outlined"> search </span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-secondary-color text-primary hover:bg-accent-color/50 transition-colors">
+<span class="material-symbols-outlined"> shopping_cart </span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDwfFNf20kRL2XXK6KLxoE-tKoVopXcR1N7NRe4BRR2_8S0Yw7FcMxGS7SC6CVtLJbigA9T6a6OudnrCelTnLe1ePthqzwM5nmTDK7-mkDY8Jp1a73o_aAfESuLf3I5nWmgc1Qx0Gjm1s6ixeE3ihWiaAye2lq58Ya-WgONFhWZHW5tM2qsOeRjVYVE7rC4EoX26XkPMIkpIrl_prBC9xefrwVMNTUKeGEG1AnuMMkn4VE86DgOIz14W5-A8mbwPJO3qzv7jP0f5Q");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-12 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-2xl space-y-8">
+<div>
+<h1 class="text-4xl font-extrabold text-primary mb-2">Upload New Prescription</h1>
+<p class="text-base text-secondary leading-relaxed">
+                Please upload a clear image of your prescription. Ensure all details are visible, including your name, medication name, dosage, and doctor's signature. Our
+                pharmacists will review it and contact you shortly.
+              </p>
+</div>
+<div class="bg-white rounded-lg shadow-md p-8 border border-gray-200">
+<div class="flex flex-col items-center gap-6 rounded-lg border-2 border-dashed border-gray-300 px-6 py-14">
+<div class="text-primary-color">
+<span class="material-symbols-outlined text-6xl"> cloud_upload </span>
+</div>
+<div class="flex flex-col items-center gap-1 text-center">
+<p class="text-lg font-bold text-primary">Drag and drop or browse to upload</p>
+<p class="text-sm text-secondary">Supported formats: JPG, PNG, PDF</p>
+</div>
+<button class="bg-secondary-color text-primary-color border border-primary-color px-6 py-3 rounded-md hover:bg-primary-color hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50 transition ease-in-out duration-150 font-bold">
+<span class="truncate">Browse Files</span>
+</button>
+</div>
+<div class="mt-8 space-y-4">
+<div class="flex justify-between items-center">
+<p class="text-base font-medium text-primary">Uploading prescription.pdf...</p>
+<p class="text-sm font-medium text-secondary">60%</p>
+</div>
+<div class="h-2 rounded-full bg-secondary-color overflow-hidden">
+<div class="h-full rounded-full bg-[var(--primary-color)]" style="width: 60%;"></div>
+</div>
+</div>
+<div class="mt-8 flex justify-end">
+<button class="bg-primary-color text-white px-8 py-3 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50 transition ease-in-out duration-150 font-bold text-base">
+<span class="truncate">Submit Prescription</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

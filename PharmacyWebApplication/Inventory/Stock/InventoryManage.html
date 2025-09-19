@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+      --primary-color: #38e07b;
+      --secondary-color: #034d20;
+      --background-color: #357750;
+      --text-primary: #fffefe;
+      --text-secondary: #a0a0a0;
+      --accent-color: #28a058;
+    }
+    body {
+      font-family: 'Spline Sans', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-primary);
+    }
+    </style>
+</head>
+<body class="dark">
+<div class="relative flex size-full min-h-screen flex-col bg-[var(--background-color)] group/design-root overflow-x-hidden">
+<div class="flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--secondary-color)] px-10 py-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-[var(--text-primary)]">
+<span class="material-symbols-outlined text-[var(--primary-color)] text-3xl"> medical_services </span>
+<h1 class="text-xl font-bold">MediStock</h1>
+</div>
+<nav class="flex items-center gap-6">
+<a class="text-sm font-medium text-[var(--text-primary)] hover:text-[var(--primary-color)] transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-medium text-[var(--text-primary)] hover:text-[var(--primary-color)] transition-colors" href="#">Orders</a>
+<a class="text-sm font-medium text-[var(--primary-color)]" href="#">Inventory</a>
+<a class="text-sm font-medium text-[var(--text-primary)] hover:text-[var(--primary-color)] transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]"> search </span>
+<input class="form-input w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full border-none bg-[var(--secondary-color)] py-2.5 pl-10 pr-4 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]" placeholder="Search" type="search"/>
+</div>
+<button class="icon_button p-2 rounded-full hover:bg-[var(--secondary-color)] transition-colors">
+<span class="material-symbols-outlined text-[var(--text-primary)]"> notifications </span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdMUg9aasvl1zjNUAR34P2FAvkfi-i-xDZfilg0HGdg4ysFew1uMsvTuptYthZovrQepsTu6gaV-lDmdHy72cpnrXjxjk8yv5UJ9Qb8ddZJ_pZBZzwlS1feIDFn3R0zoCJXIM2xsdQuD8h0DE2yHL7LCWZ_x2nmqYt108rCLnq2vCOmLucpOYIhWg4hYlrBF50a3ODWCtPtL-ftJf-g50eSkDuXTeDCb6AGrnN8uVUPgG5-Y8tDIwhD2exHriV083EXc8WseMSvg");'></div>
+</div>
+</header>
+<main class="flex-1 px-10 py-8">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-3xl font-bold text-[var(--text-primary)]">Inventory Management</h2>
+<button class="flex items-center gap-2 rounded-full bg-[var(--primary-color)] px-5 py-2.5 text-sm font-semibold text-[var(--background-color)] hover:bg-[var(--accent-color)] transition-colors">
+<span class="material-symbols-outlined"> add </span>
+<span class="truncate">Add New Medicine</span>
+</button>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<div class="flex border-b border-[var(--secondary-color)]">
+<a class="flex items-center justify-center gap-2 border-b-2 border-[var(--primary-color)] px-4 py-3 text-sm font-semibold text-[var(--primary-color)]" href="#">
+                  All Medicines
+                  <span class="rounded-full bg-[var(--secondary-color)] px-2 py-0.5 text-xs text-[var(--text-primary)]">124</span>
+</a>
+<a class="flex items-center justify-center gap-2 border-b-2 border-transparent px-4 py-3 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">
+                  Low Stock
+                  <span class="rounded-full bg-[var(--secondary-color)] px-2 py-0.5 text-xs text-[var(--text-primary)]">12</span>
+</a>
+<a class="flex items-center justify-center gap-2 border-b-2 border-transparent px-4 py-3 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">
+                  Expired
+                  <span class="rounded-full bg-[var(--secondary-color)] px-2 py-0.5 text-xs text-[var(--text-primary)]">3</span>
+</a>
+<a class="flex items-center justify-center gap-2 border-b-2 border-transparent px-4 py-3 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">
+                  Out of Stock
+                  <span class="rounded-full bg-[var(--secondary-color)] px-2 py-0.5 text-xs text-[var(--text-primary)]">8</span>
+</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]"> search </span>
+<input class="form-input w-full rounded-full border border-[var(--accent-color)] bg-[var(--secondary-color)] py-2 pl-10 pr-4 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]" placeholder="Search for medicines" type="search"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[var(--secondary-color)] px-4 text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--accent-color)]">
+                    Filter
+                    <span class="material-symbols-outlined text-base"> filter_list </span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[var(--secondary-color)] px-4 text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--accent-color)]">
+                    Sort
+                    <span class="material-symbols-outlined text-base"> sort </span>
+</button>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto rounded-lg border border-[var(--secondary-color)] bg-[var(--secondary-color)]">
+<table class="w-full text-left">
+<thead class="bg-[var(--accent-color)]/20 text-sm font-semibold text-[var(--text-primary)]">
+<tr>
+<th class="px-4 py-3">Medicine Name</th>
+<th class="px-4 py-3">Dosage</th>
+<th class="px-4 py-3">Quantity</th>
+<th class="px-4 py-3">Expiry Date</th>
+<th class="px-4 py-3">Reorder Threshold</th>
+<th class="px-4 py-3">Supplier</th>
+<th class="px-4 py-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[var(--accent-color)]">
+<tr class="hover:bg-[var(--accent-color)]/10">
+<td class="px-4 py-3 text-sm font-medium text-[var(--text-primary)]">Aspirin</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">325mg</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">500</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">2024-12-31</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">100</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">PharmaCorp</td>
+<td class="px-4 py-3 text-right">
+<button class="p-1 text-[var(--text-secondary)] hover:text-[var(--primary-color)]"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 text-[var(--text-secondary)] hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-[var(--accent-color)]/10">
+<td class="px-4 py-3 text-sm font-medium text-[var(--text-primary)]">Ibuprofen</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">200mg</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">300</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">2025-06-15</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">50</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">MediSupplies</td>
+<td class="px-4 py-3 text-right">
+<button class="p-1 text-[var(--text-secondary)] hover:text-[var(--primary-color)]"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 text-[var(--text-secondary)] hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-[var(--accent-color)]/10">
+<td class="px-4 py-3 text-sm font-medium text-[var(--text-primary)]">Acetaminophen</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">500mg</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">400</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">2024-11-20</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">75</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">HealthMeds</td>
+<td class="px-4 py-3 text-right">
+<button class="p-1 text-[var(--text-secondary)] hover:text-[var(--primary-color)]"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 text-[var(--text-secondary)] hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-[var(--accent-color)]/10">
+<td class="px-4 py-3 text-sm font-medium text-[var(--text-primary)]">Amoxicillin</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">250mg</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">200</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">2025-03-10</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">40</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">PharmaCorp</td>
+<td class="px-4 py-3 text-right">
+<button class="p-1 text-[var(--text-secondary)] hover:text-[var(--primary-color)]"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 text-[var(--text-secondary)] hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-[var(--accent-color)]/10">
+<td class="px-4 py-3 text-sm font-medium text-[var(--text-primary)]">Ciprofloxacin</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">500mg</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">150</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">2024-10-05</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">30</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">MediSupplies</td>
+<td class="px-4 py-3 text-right">
+<button class="p-1 text-[var(--text-secondary)] hover:text-[var(--primary-color)]"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 text-[var(--text-secondary)] hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-[var(--accent-color)]/10">
+<td class="px-4 py-3 text-sm font-medium text-[var(--text-primary)]">Metformin</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">500mg</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">600</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">2025-01-22</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">120</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">HealthMeds</td>
+<td class="px-4 py-3 text-right">
+<button class="p-1 text-[var(--text-secondary)] hover:text-[var(--primary-color)]"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 text-[var(--text-secondary)] hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+<tr class="hover:bg-[var(--accent-color)]/10">
+<td class="px-4 py-3 text-sm font-medium text-[var(--text-primary)]">Lisinopril</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">10mg</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">450</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">2024-09-18</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">90</td>
+<td class="px-4 py-3 text-sm text-[var(--text-secondary)]">PharmaCorp</td>
+<td class="px-4 py-3 text-right">
+<button class="p-1 text-[var(--text-secondary)] hover:text-[var(--primary-color)]"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-1 text-[var(--text-secondary)] hover:text-red-500"><span class="material-symbols-outlined">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<nav class="flex items-center justify-between text-sm">
+<p class="text-[var(--text-secondary)]">Showing 1 to 7 of 124 results</p>
+<div class="flex items-center gap-2">
+<button class="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--secondary-color)] text-[var(--text-primary)] hover:bg-[var(--accent-color)]">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary-color)] text-sm font-bold text-[var(--background-color)]">1</button>
+<button class="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--secondary-color)] text-[var(--text-primary)] hover:bg-[var(--accent-color)]">2</button>
+<button class="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--secondary-color)] text-[var(--text-primary)] hover:bg-[var(--accent-color)]">3</button>
+<span class="text-[var(--text-secondary)]">...</span>
+<button class="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--secondary-color)] text-[var(--text-primary)] hover:bg-[var(--accent-color)]">18</button>
+<button class="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--secondary-color)] text-[var(--text-primary)] hover:bg-[var(--accent-color)]">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</nav>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

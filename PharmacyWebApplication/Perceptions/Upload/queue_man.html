@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter:wght@400;500;700;900&amp;family=Noto+Sans:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #34D399;
+        --secondary-color: #fef2f2;
+        --background-color: #ffffff;
+        --text-primary: #1f2937;
+        --text-secondary: #4b5563;
+        --accent-color: #fca5a5;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-primary);
+      }
+    </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
+<div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 px-10 py-4 shadow-sm">
+<div class="flex items-center gap-4 text-[var(--text-primary)]">
+<svg class="h-8 w-8 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.5 16.5L15 15L12 18L9 15L7.5 16.5L12 21L16.5 16.5ZM12 13C13.66 13 15 11.66 15 10C15 8.34 13.66 7 12 7C10.34 7 9 8.34 9 10C9 11.66 10.34 13 12 13ZM12 3C14.76 3 17 5.24 17 8H15C15 6.34 13.66 5 12 5C10.34 5 9 6.34 9 8H7C7 5.24 9.24 3 12 3Z"></path>
+</svg>
+<h2 class="text-[var(--text-primary)] text-xl font-bold leading-tight tracking-[-0.015em]">PharmaFlow</h2>
+</div>
+<nav class="flex flex-1 justify-center items-center gap-8">
+<a class="text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-[var(--primary-color)] text-sm font-bold leading-normal border-b-2 border-[var(--primary-color)] pb-1" href="#">Prescriptions</a>
+<a class="text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal transition-colors" href="#">Inventory</a>
+<a class="text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal transition-colors" href="#">Reports</a>
+<a class="text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative">
+<span class="material-symbols-outlined text-[var(--text-secondary)] hover:text-[var(--text-primary)]"> notifications </span>
+<span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-[var(--primary-color)]"></span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBwdI1Hx6PjpiAQnUdYzpv5PpDQGwHVJn-LQgvYMTn3qauwD9R31fbDzGoSOi0mqeMGKCyGLDwelF4oZn_ZhOnIUfq8w67r-cqz3DxOV6LdSOm6BfBMKZe626SYuX0RXKx6ToqsnJnrRADY7Zh-zGj5cj98do0x1_ghiWMbedT-IDzKFgq1cV8f3R2loc2qWBYIvThIPajE4-6loUTuKh7pQNw8k-Apu-MaiwWsmb836qNnKJLf2wSJU4aUvPNTUwA0lmSRR4XFCA");'></div>
+</div>
+</header>
+<main class="flex flex-1">
+<aside class="w-80 border-r border-gray-200 bg-gray-50 p-6">
+<h2 class="text-[var(--text-primary)] text-lg font-bold mb-6">Pharmacist Workload</h2>
+<div class="space-y-4">
+<div class="flex items-center gap-4 rounded-lg p-3 hover:bg-gray-100 cursor-pointer transition-colors border-l-4 border-[var(--primary-color)] bg-[var(--secondary-color)]">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZ-c0B84Ac0BVuFQDbiGw3P6Pf_lb4vQpjCaHq6d4H1R72xsRttijHgrlgK6r8FwLqmDxzKcqh4fTM0_6cqZIfsSnZSQ7yXdNTagaqCg8gNf4-hVlqF2cH5IJRGtiRk8TWPcvOtA_SKZY81U0Thd8bCa7T1LvRFpTquGO7rnl6VPiQIkNga_cUqbJZ2Werch8SqjIa3aKl-A6xzssO9khpxob2DmZJzbkNoex-glixnkP6MTsndpcRfLm7nv6O0Ti7T9H0rEYm7g");'></div>
+<div class="flex flex-col">
+<p class="text-[var(--text-primary)] text-sm font-semibold">Dr. Emily Carter</p>
+<p class="text-[var(--text-secondary)] text-xs">12 prescriptions</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-lg p-3 hover:bg-gray-100 cursor-pointer transition-colors">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1NQ6iTEN1t_xooWvCvMc9y39vlITtvmcKd7TtGbF5mSIsVDrnbRXIXfS-4o1dBX2cPpb4u9QDz1gdGmgBY7ST-777dh0XxPiiuMpVHkCUwX65itQqV4QLCfxFIShMR4Dj4nPnGBwY8eh7LWD_MvYB7jsLoA9BU9X5zhlrXniHxK7TF6a4GHqDhJsvTJNDmwWE235sD4TEEvZjEwtMPgDQCu--F3nYm56ctpD3U_BB54W8llMLH5eD-n2cqzmILeF8SPlr_wd5mQ");'></div>
+<div class="flex flex-col">
+<p class="text-[var(--text-primary)] text-sm font-medium">Dr. David Lee</p>
+<p class="text-[var(--text-secondary)] text-xs">8 prescriptions</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-lg p-3 hover:bg-gray-100 cursor-pointer transition-colors">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBhTUFqwxl_QexSudS-b25JzxhU67IxPXIhUe60OG6ZjsrhRPTq0XYnc5ZWoJUY7vvsudaxzG7K8x6tNrFeXrFoU8MLTpp_husGTMvO-AXUpcBy9IhH70r8LPexYl0tunE0WmCWOUCbdD-yW95dG5pI41VnHU1LZTovnxwU49maoM7-NuBbcHpaSd1zEsdhp2O4BzOpC9onxfH8VBIiUzlABm9f7PK7f81uywO33ZGAMHIcc7HOoCajqw_zdoJYEpZhhNU7BkrqtA");'></div>
+<div class="flex flex-col">
+<p class="text-[var(--text-primary)] text-sm font-medium">Dr. Sarah Jones</p>
+<p class="text-[var(--text-secondary)] text-xs">15 prescriptions</p>
+</div>
+</div>
+<div class="flex items-center gap-4 rounded-lg p-3 hover:bg-gray-100 cursor-pointer transition-colors">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTkz6ZTH9YD_XclQqVuNOATkoMv4NTMObVfKUuzkoMZMCD02WgYxZqwlQwLlA6lyryjgOWVqxzw5BmFs6RJydxMf3NKJplMfkrR7Ax9-CJ7BsAH4hEmnW2cv_hMa9FHy0nXb7Qna4stdSEx2QEahf4fLa7K5GxaDwCKlqfSAzvkxCFuyyl9rsO4W7nrK_yvdjnXUoIh8yYE6gyBW-h-fb45nPOy_ruuBQvzV5o88FWSLH_VpS83r3yJ-FTMNiT_nEpt1ecOp5NSg");'></div>
+<div class="flex flex-col">
+<p class="text-[var(--text-primary)] text-sm font-medium">Dr. Michael Chen</p>
+<p class="text-[var(--text-secondary)] text-xs">10 prescriptions</p>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 p-8">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-[var(--text-primary)]">Prescription Assignment</h1>
+<p class="text-[var(--text-secondary)] mt-1">Manage prescription workload among pharmacists.</p>
+</div>
+<div class="overflow-x-auto rounded-lg border border-gray-200 bg-[var(--background-color)] shadow-md">
+<table class="w-full text-sm text-left text-[var(--text-secondary)]">
+<thead class="text-xs text-[var(--text-primary)] uppercase bg-gray-50">
+<tr>
+<th class="px-6 py-3" scope="col">Prescription ID</th>
+<th class="px-6 py-3" scope="col">Patient Name</th>
+<th class="px-6 py-3" scope="col">Medication</th>
+<th class="px-6 py-3" scope="col">Status</th>
+<th class="px-6 py-3" scope="col">Assigned Pharmacist</th>
+<th class="px-6 py-3 text-center" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-[var(--background-color)] border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX12345</td>
+<td class="px-6 py-4">Alice Johnson</td>
+<td class="px-6 py-4">Amoxicillin</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"> Pending </span>
+</td>
+<td class="px-6 py-4">Dr. Emily Carter</td>
+<td class="px-6 py-4 text-center">
+<button class="bg-[var(--secondary-color)] text-[var(--primary-color)] border border-[var(--primary-color)] px-4 py-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition ease-in-out duration-150 text-xs font-semibold">
+                        Reassign
+                      </button>
+</td>
+</tr>
+<tr class="bg-[var(--background-color)] border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX67890</td>
+<td class="px-6 py-4">Robert Smith</td>
+<td class="px-6 py-4">Lisinopril</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"> Pending </span>
+</td>
+<td class="px-6 py-4">Dr. David Lee</td>
+<td class="px-6 py-4 text-center">
+<button class="bg-[var(--secondary-color)] text-[var(--primary-color)] border border-[var(--primary-color)] px-4 py-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition ease-in-out duration-150 text-xs font-semibold">
+                        Reassign
+                      </button>
+</td>
+</tr>
+<tr class="bg-[var(--background-color)] border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX11223</td>
+<td class="px-6 py-4">Maria Garcia</td>
+<td class="px-6 py-4">Metformin</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"> Pending </span>
+</td>
+<td class="px-6 py-4">Dr. Sarah Jones</td>
+<td class="px-6 py-4 text-center">
+<button class="bg-[var(--secondary-color)] text-[var(--primary-color)] border border-[var(--primary-color)] px-4 py-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition ease-in-out duration-150 text-xs font-semibold">
+                        Reassign
+                      </button>
+</td>
+</tr>
+<tr class="bg-[var(--background-color)] border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX44556</td>
+<td class="px-6 py-4">James Brown</td>
+<td class="px-6 py-4">Atorvastatin</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"> Pending </span>
+</td>
+<td class="px-6 py-4">Dr. Michael Chen</td>
+<td class="px-6 py-4 text-center">
+<button class="bg-[var(--secondary-color)] text-[var(--primary-color)] border border-[var(--primary-color)] px-4 py-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition ease-in-out duration-150 text-xs font-semibold">
+                        Reassign
+                      </button>
+</td>
+</tr>
+<tr class="bg-[var(--background-color)] hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">RX77889</td>
+<td class="px-6 py-4">Linda Davis</td>
+<td class="px-6 py-4">Levothyroxine</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800"> Pending </span>
+</td>
+<td class="px-6 py-4">Dr. Emily Carter</td>
+<td class="px-6 py-4 text-center">
+<button class="bg-[var(--secondary-color)] text-[var(--primary-color)] border border-[var(--primary-color)] px-4 py-2 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition ease-in-out duration-150 text-xs font-semibold">
+                        Reassign
+                      </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-white">
+<div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--text-secondary)]">
+            © 2025 MediCare. All rights reserved.
+        </div>
+</footer>
+</div>
+
+</body></html>
