@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Pharmacy</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="../../Home/home1/index.html" class="active">Home</a>
+    <a href="../../Home/cart/cart.html">Cart</a>
+  </nav>
+
+  <header>
+    <h1>Welcome to Online Pharmacy</h1>
+    <p>Select your medicines and add them to the cart.</p>
+  </header>
+
+  <main>
+    <div class="main-content">
+      <section id="categories" class="categories"></section>
+      <section id="medications" class="medications-container">
+        <div id="medication-grid" class="med-list"></div>
+      </section>
+    </div>
+    <section id="cart" class="cart-panel">
+      <h3>Your Cart</h3>
+      <ul id="cart-items"></ul>
+      <div class="cart-footer">
+        <p id="cart-total">Total: Rs. 0.00</p>
+        <button id="checkoutBtn">Checkout</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
