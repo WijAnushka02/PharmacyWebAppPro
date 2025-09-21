@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare - Prescription Verification</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body>
+    <div class="flex flex-col min-h-screen">
+        <header class="shadow-sm sticky top-0 z-10 bg-[var(--primary-color)]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center gap-4">
+                        <div class="text-[var(--secondary-color)]">
+                            <svg class="h-8 w-8" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h1 class="text-xl font-bold text-white">MediCare</h1>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a class="text-sm font-medium text-white hover:text-[var(--secondary-color)]" href="../../Home/index.html">Home</a>
+                        <a class="text-sm font-medium text-white border-b-2 border-[var(--secondary-color)] pb-1" href="#">Prescriptions</a>
+                        <a class="text-sm font-medium text-white hover:text-[var(--secondary-color)]" href="#">Dashboard</a>
+                        <a class="text-sm font-medium text-white hover:text-[var(--secondary-color)]" href="../../Inventory/Stock/inventory.html">Inventory</a>
+                        
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main class="flex-grow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-[var(--text-primary)]">Prescription Verification</h2>
+                    <p class="text-[var(--text-secondary)] mt-1">Review and verify pending prescriptions.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+                        <div class="relative w-full md:max-w-md">
+                            <input class="pl-4 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]" placeholder="Search by patient name or Rx ID..." type="text"/>
+                        </div>
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <div class="relative">
+                                <select id="priority-filter" class="appearance-none bg-gray-50 border border-gray-300 text-[var(--text-secondary)] text-sm rounded-lg focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] block w-full pl-3 pr-10 py-2">
+                                    <option selected="">All Priorities</option>
+                                    <option value="Verified">Verified</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Expired">Expired</option>
+                                </select>
+                            </div>
+                            <input class="bg-gray-50 border border-gray-300 text-[var(--text-secondary)] text-sm rounded-lg focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)] block w-full py-2 px-3" type="date"/>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-[var(--text-secondary)]">
+                            <thead class="text-xs text-[var(--text-secondary)] uppercase bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3" scope="col">Prescription ID</th>
+                                    <th class="px-6 py-3" scope="col">Patient Name</th>
+                                    <th class="px-6 py-3" scope="col">Issue Date</th>
+                                    <th class="px-6 py-3 text-center" scope="col">Priority</th>
+                                    <th class="px-6 py-3 text-center" scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="prescription-table-body">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="bg-white">
+            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--text-secondary)]">
+                © 2025 MediCare. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

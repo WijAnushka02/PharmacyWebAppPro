@@ -25,11 +25,10 @@ if (empty($query)) {
 }
 
 // Prepare SQL query to search for a medication
-// We join the 'medicine' and 'stock' tables to get both description and price.
-$sql = "SELECT m.Medicine_name, m.Description, s.Unit_price
-        FROM medicine m
-        JOIN stock s ON m.Medicine_ID = s.Medicine_ID
-        WHERE LOWER(m.Medicine_name) LIKE ?";
+// Removed JOIN from stock table and now retrieves price from medications table
+$sql = "SELECT Medicine_name, Description, price
+        FROM medications
+        WHERE LOWER(Medicine_name) LIKE ?";
         
 $stmt = $conn->prepare($sql);
 
@@ -49,14 +48,15 @@ if ($result->num_rows > 0) {
     $medication = [
         "name" => $row['Medicine_name'],
         "description" => $row['Description'],
-        "price" => $row['Unit_price']
+        "price" => $row['price']
     ];
-    echo json_encode($medication);
 } else {
-    // No medication found
-    echo json_encode(["error" => "No medication found."]);
+    // No results found
+    $medication = ["error" => "No results found for '" . $_GET['q'] . "'"];
 }
 
 $stmt->close();
 $conn->close();
+
+echo json_encode($medication);
 ?>
