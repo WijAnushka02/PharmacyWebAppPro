@@ -1,33 +1,14 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>HealthPlus - Your Orders</title>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900" onload="this.rel='stylesheet'" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<style type="text/tailwindcss">
-    :root {
-     --primary-color: #34D399;
-     --secondary-color: #f0fdf4;
-     --background-color: #2b9e4d;
-     --text-primary: #1a202c;
-     --text-secondary: #4b5563;
-     --accent-color: #06441d;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-    .badge-delivered {
-      background-color: #dcfce7;
-      color: #166534;
-    }
-    .badge-shipped {
-      background-color: #dbeafe;
-      color: #1e40af;
-    }
-  </style>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body class="bg-[var(--background-color)] text-[var(--text-primary)]">
 <div class="flex flex-col min-h-screen">
@@ -43,23 +24,12 @@
 <h2 class="text-xl font-bold">HealthPlus</h2>
 </div>
 <nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="#">Home</a>
-<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="#">Services</a>
-<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="#">Medications</a>
-<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="#">Supplements</a>
-<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="#">Contact</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="../../Home/index.html">Home</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="../../Medications/public/index.html">Medications</a>
+<a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors" href="../../Support/support.html">Contact</a>
 </nav>
 <div class="flex items-center gap-4">
-<button class="text-[var(--text-secondary)] hover:text-[var(--primary-color)]">
-<span class="material-symbols-outlined">search</span>
-</button>
-<button class="text-[var(--text-secondary)] hover:text-[var(--primary-color)] relative">
-<span class="material-symbols-outlined">shopping_cart</span>
-<span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--primary-color)] text-xs font-bold text-white">3</span>
-</button>
-<button>
-<img alt="User Avatar" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIbC0_d-WP2tuAGFEQ-H61TwANk_IH04YEIykDWJt-5JlLZG6yzcOWcAQP8BAP4UeGGLKSIzajT4rPQdXxFEWDAvl3eW1Uy1UWd-QD8qCqaCa_r7v-WgMbHhr7XV21SOi1D_Yoj7r50Nf6kSRzFe6Ap0h3qChbBGgYxcOodhp2uA-S0imCMLRTv6HMFEN-fS-hWwlRIxxaZjE6m4f4rfLlNh005ioKYM1kbed8sg2FYGGKIvIgKLT3u8W2Fu8e9EunCOCWXioReA"/>
-</button>
+
 </div>
 </div>
 </div>
@@ -83,76 +53,13 @@
 <thead class="bg-gray-50">
 <tr>
 <th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Order ID</th>
-<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Date</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Customer ID</th>
 <th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Total</th>
-<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Status</th>
-<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Items</th>
-<th class="relative px-6 py-3" scope="col">
-<span class="sr-only">View</span>
-</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Medicine ID</th>
+<th class="px-6 py-3 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider" scope="col">Quantity</th>
 </tr>
 </thead>
-<tbody class="bg-white divide-y divide-gray-200">
-<tr>
-<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">#12345</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">July 15, 2023</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">$55.00</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm">
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-delivered">Delivered</span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">3 items</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<a class="text-[var(--primary-color)] hover:underline" href="#">View Details</a>
-</td>
-</tr>
-<tr>
-<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">#67890</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">June 20, 2023</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">$75.00</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm">
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-shipped">Shipped</span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">2 items</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<a class="text-[var(--primary-color)] hover:underline" href="#">View Details</a>
-</td>
-</tr>
-<tr>
-<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">#11223</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">May 10, 2023</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">$40.00</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm">
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-delivered">Delivered</span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">1 item</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<a class="text-[var(--primary-color)] hover:underline" href="#">View Details</a>
-</td>
-</tr>
-<tr>
-<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">#44556</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">April 5, 2023</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">$60.00</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm">
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-delivered">Delivered</span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">4 items</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<a class="text-[var(--primary-color)] hover:underline" href="#">View Details</a>
-</td>
-</tr>
-<tr>
-<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[var(--text-primary)]">#77889</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">March 1, 2023</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">$90.00</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm">
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium badge-delivered">Delivered</span>
-</td>
-<td class="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">5 items</td>
-<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-<a class="text-[var(--primary-color)] hover:underline" href="#">View Details</a>
-</td>
-</tr>
+<tbody id="orders-table-body" class="bg-white divide-y divide-gray-200">
 </tbody>
 </table>
 </div>
@@ -167,29 +74,13 @@
                 Showing
                 <span class="font-medium">1</span>
                 to
-                <span class="font-medium">5</span>
+                <span class="font-medium">10</span>
                 of
-                <span class="font-medium">20</span>
+                <span class="font-medium">10</span>
                 results
               </p>
 </div>
-<div>
-<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
-<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" href="#">
-<span class="sr-only">Previous</span>
-<span class="material-symbols-outlined h-5 w-5">chevron_left</span>
-</a>
-<a aria-current="page" class="z-10 bg-[var(--accent-color)] border-[var(--primary-color)] text-[var(--primary-color)] relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#"> 1 </a>
-<a class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#"> 2 </a>
-<a class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#"> 3 </a>
-<span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700"> ... </span>
-<a class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium" href="#"> 8 </a>
-<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" href="#">
-<span class="sr-only">Next</span>
-<span class="material-symbols-outlined h-5 w-5">chevron_right</span>
-</a>
-</nav>
-</div>
+
 </div>
 </div>
 </div>
@@ -203,4 +94,7 @@
 </footer>
 </div>
 
-</body></html>
+<script src="script.js"></script>
+
+</body>
+</html>

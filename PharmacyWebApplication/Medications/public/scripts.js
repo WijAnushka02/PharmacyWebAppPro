@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const categoriesDiv = document.getElementById("categories");
-    const medicationGridDiv = document.getElementById("medication-grid"); // Target the new div
+    const medicationGridDiv = document.getElementById("medication-grid");
     const cartItems = document.getElementById("cart-items");
     const cartTotal = document.getElementById("cart-total");
 
@@ -10,12 +10,24 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             displayCategories(data.categories);
             displayMedications(data.medications);
+            // Fetch and display initial cart items
+            fetchCart();
         })
         .catch(error => console.error("Error fetching data:", error));
 
     document.getElementById("checkoutBtn").addEventListener("click", () => {
-        window.location.href = "../../Home/cart/cart.html";
+        window.location.href = "../../Cart/cart.html";
     });
+
+    function fetchCart() {
+        fetch("../api/cart.php")
+            .then(res => res.json())
+            .then(data => {
+                // Access the 'cart' property from the response
+                updateCart(data.cart);
+            })
+            .catch(error => console.error("Error fetching cart:", error));
+    }
 
     // Show categories
     function displayCategories(categories) {
@@ -36,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show medications
     function displayMedications(medications) {
-        medicationGridDiv.innerHTML = ""; // Update the innerHTML of the new div
+        medicationGridDiv.innerHTML = "";
         medications.forEach(med => {
             const card = document.createElement("div");
             card.className = "med-card";
@@ -49,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p class="med-price">Rs. ${med.price}</p>
                 <button class="add-btn" onclick="addToCart(${med.Medicine_ID})">Add to Cart</button>
             `;
-            medicationGridDiv.appendChild(card); // Append to the new div
+            medicationGridDiv.appendChild(card);
         });
     }
 
@@ -67,8 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id, quantity: 1 })
         })
-            .then(res => res.json())
-            .then(data => updateCart(data));
+        .then(res => res.json())
+        .then(() => {
+            fetchCart();
+        });
     };
 
     // Update cart
@@ -94,6 +108,9 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "DELETE"
         })
             .then(res => res.json())
-            .then(data => updateCart(data));
+            .then(data => {
+                // Access the 'cart' property from the response
+                updateCart(data.cart);
+            });
     };
 });

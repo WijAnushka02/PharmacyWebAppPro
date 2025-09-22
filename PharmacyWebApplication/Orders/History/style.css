@@ -1,0 +1,22 @@
+:root {
+  --primary-color: #34D399;
+  --secondary-color: #f0fdf4;
+  --background-color: #2b9e4d;
+  --text-primary: #1a202c;
+  --text-secondary: #4b5563;
+  --accent-color: #06441d;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.badge-delivered {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.badge-shipped {
+  background-color: #dbeafe;
+  color: #1e40af;
+}

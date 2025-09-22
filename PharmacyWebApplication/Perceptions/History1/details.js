@@ -15,32 +15,61 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(data => {
                 // Update Patient Information
-                document.getElementById('patient-name').textContent = data.patientName;
+                document.getElementById('patient-name').textContent = data.patient_name;
                 document.getElementById('patient-dob').textContent = data.dob;
                 document.getElementById('patient-address').textContent = data.address;
-
-                // Update Scanned Prescription Image
-                document.getElementById('scanned-prescription-image').style.backgroundImage = `url(${data.image})`;
-
-                // Update Prescribed Medicines table
-                const medicineTableBody = document.getElementById('medicine-table-body');
-                medicineTableBody.innerHTML = ''; // Clear existing rows
-                data.medicines.forEach(medicine => {
-                    const row = document.createElement('tr');
-                    row.className = 'border-b border-gray-200';
-                    row.innerHTML = `
-                        <td class="px-6 py-4 font-medium text-[var(--text-primary)]">${medicine.medicine}</td>
-                        <td class="px-6 py-4 text-[var(--text-secondary)]">${medicine.dosage}</td>
-                        <td class="px-6 py-4 text-[var(--text-secondary)]">${medicine.quantity}</td>
-                        <td class="px-6 py-4 text-[var(--text-secondary)]">${medicine.refills}</td>
-                    `;
-                    medicineTableBody.appendChild(row);
-                });
             })
             .catch(error => {
                 console.error('Error fetching prescription details:', error);
                 document.getElementById('prescription-id').textContent = `Prescription Not Found`;
                 // Optionally, hide other sections or display an error message on the page
             });
+
+        // Add event listeners for the action buttons
+        const approveButton = document.getElementById('approve-button');
+        const rejectButton = document.getElementById('reject-button');
+
+        if (approveButton) {
+            approveButton.addEventListener('click', () => {
+                processVerification(prescriptionId, 'approved');
+            });
+        }
+
+        if (rejectButton) {
+            rejectButton.addEventListener('click', () => {
+                processVerification(prescriptionId, 'rejected');
+            });
+        }
     }
 });
+
+function processVerification(prescriptionId, action) {
+    // You can add a prompt for notes here if needed
+    // const notes = prompt(`Please add notes for the ${action} action:`);
+
+    fetch('process_verification.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            prescriptionId: prescriptionId,
+            action: action,
+            // notes: notes
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert(data.message);
+            // Optional: Redirect back to the main list page
+            // window.location.href = 'perciption_verification.html';
+        } else {
+            alert('Error: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while processing your request.');
+    });
+}
