@@ -5,7 +5,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "Pharmacy_db";
+$dbname = "Pharmacy_db4";
 
 // Create a new database connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -368,76 +368,12 @@ $conn->close();
                 </a>
                 <nav class="hidden items-center gap-6 lg:flex">
                     <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="../Home/index.html">Home</a>
-                    <div class="dropdown">
-                        <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Medications</a>
-                        <div class="dropdown-content">
-                            <a href="#">Search</a>
-                            <a href="#">Categories</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Prescriptions</a>
-                        <div class="dropdown-content">
-                            <a href="#">Upload</a>
-                            <a href="#">History</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Inventory</a>
-                        <div class="dropdown-content">
-                            <a href="#">Stock</a>
-                            <a href="#">Expiry</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Orders</a>
-                        <div class="dropdown-content">
-                            <a href="#">Pending</a>
-                            <a href="#">History</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Admin</a>
-                        <div class="dropdown-content">
-                            <a href="#">Users</a>
-                            <a href="#">Settings</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#">Support</a>
-                        <div class="dropdown-content">
-                            <a href="#">FAQ</a>
-                            <a href="#">Contact</a>
-                        </div>
-                    </div>
+                    
+                    
+                    
                 </nav>
             </div>
-            <div class="flex items-center gap-4">
-                <div class="relative hidden sm:block">
-                    <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <svg aria-hidden="true" class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path clip-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" fill-rule="evenodd"></path>
-                        </svg>
-                    </span>
-                    <input class="block w-full rounded-md border-gray-300 bg-gray-50 py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:border-[var(--primary-color)] focus:bg-white focus:text-gray-900 focus:outline-none focus:ring-1 focus:ring-[var(--primary-color)] sm:text-sm" placeholder="Search" type="search"/>
-                </div>
-                <div class="hidden items-center gap-2 md:flex">
-                    <a class="rounded-md bg-[var(--secondary-color)] px-4 py-2 text-sm font-medium text-[var(--primary-color)] hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition-colors duration-200" href="#">Offers</a>
-                    <a class="rounded-md bg-[var(--primary-color)] px-4 py-2 text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition-colors duration-200" href="#">Sign In</a>
-                    <a class="rounded-md border border-[var(--primary-color)] px-4 py-2 text-sm font-medium text-[var(--primary-color)] hover:bg-[var(--secondary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition-colors duration-200" href="../Sign Up/signup_main.php">Sign Up</a>
-                </div>
-                <button class="relative rounded-full bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    <span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--primary-color)] text-xs text-white">0</span>
-                </button>
-                <button class="p-2 text-gray-500 hover:text-gray-700 lg:hidden">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                    </svg>
-                </button>
-            </div>
+            
         </div>
     </header>
 

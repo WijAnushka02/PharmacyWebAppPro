@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>MediCare Pharmacy - Live FAQ Chat</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style type="text/tailwindcss">
+        :root {
+            --primary-color: #34D399;
+            --secondary-color: #f0fdf4;
+            --background-color: #2b9e4d;
+            --text-primary: #1a202c;
+            --text-secondary: #4b5563;
+            --accent-color: #06441d;
+        }
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+        }
+        
+        /* Updated Navigation CSS for dropdown */
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            border-radius: 4px;
+            top: calc(100% + 8px); /* Position below the link */
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+        .dropdown-content a {
+            color: var(--text-primary);
+            padding: 12px 16px;
+            display: block;
+            text-align: left;
+            transition: background-color 0.3s;
+        }
+        .dropdown-content a:hover {
+            background-color: var(--secondary-color);
+        }
+        .dropdown-content.active {
+            display: block;
+        }
+        
+        /* Custom styles for the chat page to match the new design */
+        .chat-container {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-color: white; /* Changed to white background */
+            border-radius: 8px; /* Added some border radius */
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .message {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .message img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .bubble {
+            padding: 16px 20px;
+            border-radius: 20px;
+            max-width: 70%;
+            font-size: 18px;
+            line-height: 1.6;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .user .bubble {
+            background: var(--primary-color); /* Changed to primary color */
+            color: white;
+            border-radius: 20px 20px 20px 8px;
+        }
+
+        .admin {
+            flex-direction: row-reverse;
+        }
+
+        .admin .bubble {
+            background: var(--secondary-color); /* Changed to secondary color */
+            color: var(--text-primary); /* Changed to primary text color */
+            border-radius: 20px 20px 8px 20px;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px 20px;
+            background-color: var(--secondary-color);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            justify-content: center;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            outline: none;
+            font-size: 18px;
+            background: white;
+            color: var(--text-primary);
+        }
+
+        .chat-input button {
+            margin-left: 15px;
+            padding: 16px 26px;
+            border: none;
+            border-radius: 30px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background: #27ae60;
+            transform: scale(1.05);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)] min-h-screen flex flex-col">
+
+<header class="border-b border-gray-200">
+    <div class="container mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-8">
+            <a class="flex items-center gap-2 text-[var(--text-primary)]" href="#">
+                <svg class="h-8 w-8 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.5 14h-3v-3.5a1.5 1.5 0 00-3 0V16h-3V8.5a.5.5 0 011 0V11h2.5a.5.5 0 01.5.5v2.5h2V16zm-1.5-6h-4V8h4v2z"></path>
+                </svg>
+                <h1 class="text-2xl font-bold">MediCare</h1>
+            </a>
+            <nav class="hidden items-center gap-6 lg:flex">
+                <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="../../Home/index.html">Home</a>
+                <div class="dropdown">
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#" onclick="toggleDropdown(event)">Medications</a>
+                    <div class="dropdown-content">
+                        <a href="#">Search</a>
+                        <a href="#">Categories</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#" onclick="toggleDropdown(event)">Prescriptions</a>
+                    <div class="dropdown-content">
+                        <a href="#">Upload</a>
+                        <a href="#">History</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#" onclick="toggleDropdown(event)">Inventory</a>
+                    <div class="dropdown-content">
+                        <a href="#">Stock</a>
+                        <a href="#">Expiry</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#" onclick="toggleDropdown(event)">Orders</a>
+                    <div class="dropdown-content">
+                        <a href="#">Pending</a>
+                        <a href="#">History</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="#" onclick="toggleDropdown(event)">Admin</a>
+                    <div class="dropdown-content">
+                        <a href="../Admin/Users/user_list.php">Users</a>
+                        <a href="../Admin/Settings/add_user1.php">Settings</a>
+                    </div>
+                </div>
+                
+            </nav>
+        </div>
+        
+        </div>
+    </div>
+</header>
+<main class="flex-1 flex flex-col p-4 sm:p-6 lg:p-8">
+    <h2 class="text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl my-4">Live FAQ Chat</h2>
+    <div class="chat-container" id="chatBox">
+        <div class="message user">
+            <img src="customer.png" alt="Customer">
+            <div class="bubble">What are your opening hours?</div>
+        </div>
+        <div class="message admin">
+            <img src="admin.png" alt="Admin">
+            <div class="bubble">We are open Mon–Sat: 8 AM – 9 PM, Sunday: 9 AM – 6 PM.</div>
+        </div>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your question...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</main>
+<footer class="bg-gray-50">
+    <div class="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap items-baseline justify-between">
+            <div class="space-y-4">
+                <h2 class="text-lg font-semibold text-gray-800">MediCare Pharmacy</h2>
+                <p class="text-sm text-[var(--text-secondary)]">123 Health St, Wellness City, 12345</p>
+                <p class="text-sm text-[var(--text-secondary)]">Phone: (123) 456-7890</p>
+                <p class="text-sm text-[var(--text-secondary)]">Email: contact@medicare.com</p>
+            </div>
+            <nav aria-label="Footer" class="-mx-5 -my-2 flex flex-wrap justify-center">
+                <div class="px-5 py-2"><a class="text-base text-gray-500 hover:text-gray-900" href="#">Contact Us</a></div>
+                <div class="px-5 py-2"><a class="text-base text-gray-500 hover:text-gray-900" href="#">Privacy Policy</a></div>
+                <div class="px-5 py-2"><a class="text-base text-gray-500 hover:text-gray-900" href="#">Terms of Service</a></div>
+            </nav>
+            <div class="mt-8 flex justify-center space-x-6 md:mt-0">
+                <a class="text-gray-400 hover:text-gray-500" href="#">
+                    <span class="sr-only">Facebook</span>
+                    <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a class="text-gray-400 hover:text-gray-500" href="#">
+                    <span class="sr-only">Instagram</span>
+                    <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path clip-rule="evenodd" d="M12.315 2c-4.062 0-4.575.018-6.174.089C4.403 2.158 3.117 2.5 2.18 3.437c-.937.938-1.278 2.224-1.347 3.965C.768 9.098.75 9.61.75 12.315c0 2.705.018 3.217.089 4.816.07 1.741.41 3.027 1.348 3.965.937.937 2.223 1.278 3.965 1.347 1.6.07 2.112.088 4.816.088s3.217-.018 4.816-.088c1.741-.07 3.027-.41 3.965-1.348.937-.937 1.278-2.223 1.347-3.965.07-1.6.088-2.112.088-4.816s-.018-3.217-.088-4.816c-.07-1.741-.41-3.027-1.348-3.965C20.902 2.5 19.616 2.158 17.875 2.09C16.275 2.018 15.762 2 12.315 2zm0 1.802c4.004 0 4.475.016 6.06.086 1.463.066 2.305.358 2.87.824.642.545.96 1.27.995 2.182.07 1.585.086 2.057.086 5.225s-.016 3.64-.086 5.225c-.035.912-.353 1.637-.995 2.182-.565.466-1.407.758-2.87.824-1.585.07-2.056.086-6.06.086s-4.475-.016-6.06-.086c-1.463-.066-2.305-.358-2.87-.824-.642-.545-.96-1.27-.995-2.182-.07-1.585-.086-2.057-.086-5.225s.016-3.64.086-5.225c.035-.912.353-1.637.995-2.182.565-.466 1.407-.758 2.87-.824 1.585-.07 2.056-.086 6.06-.086zM12.315 7.1a5.215 5.215 0 100 10.43 5.215 5.215 0 000-10.43zm0 8.628a3.413 3.413 0 110-6.826 3.413 3.413 0 010 6.826zm5.225-9.332a1.23 1.23 0 100 2.46 1.23 1.23 0 000-2.46z" fill-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a class="text-gray-400 hover:text-gray-500" href="#">
+                    <span class="sr-only">Twitter</span>
+                    <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="mt-8 border-t border-gray-200 pt-8 text-center">
+            <p class="text-base text-gray-400">© 2025 MediCare Pharmacy. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+<script>
+    const chatBox = document.getElementById("chatBox");
+    const userInput = document.getElementById("userInput");
+
+    // Predefined answers
+    const faqAnswers = {
+        "services": "We provide prescription medicines, OTC products, supplements, and vaccinations.",
+        "hours": "We are open Mon–Sat: 8 AM – 9 PM, Sunday: 9 AM – 6 PM.",
+        "delivery": "Yes, we provide free delivery within 5km, small fee applies beyond that.",
+        "payment": "We accept cash, cards, mobile payments, and insurance.",
+        "return": "Due to safety laws, medicines cannot be returned unless damaged or incorrect."
+    };
+
+    function sendMessage() {
+        const text = userInput.value.trim();
+        if (text === "") return;
+
+        // Add user message
+        const userMsg = document.createElement("div");
+        userMsg.className = "message user";
+        userMsg.innerHTML = `<img src="customer.png" alt="Customer"><div class="bubble">${text}</div>`;
+        chatBox.appendChild(userMsg);
+
+        // Auto reply (simple match)
+        setTimeout(() => {
+            let reply = "Sorry, I don’t have an answer for that. Please contact our pharmacist.";
+            for (let key in faqAnswers) {
+                if (text.toLowerCase().includes(key)) {
+                    reply = faqAnswers[key];
+                }
+            }
+
+            const adminMsg = document.createElement("div");
+            adminMsg.className = "message admin";
+            adminMsg.innerHTML = `<img src="admin.png" alt="Admin"><div class="bubble">${reply}</div>`;
+            chatBox.appendChild(adminMsg);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 800);
+
+        // Clear input
+        userInput.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Press Enter to send
+    userInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") sendMessage();
+    });
+
+    function toggleDropdown(event) {
+        event.preventDefault();
+        const dropdownContent = event.target.nextElementSibling;
+        
+        // Close all other dropdowns
+        document.querySelectorAll('.dropdown-content.active').forEach(openDropdown => {
+            if (openDropdown !== dropdownContent) {
+                openDropdown.classList.remove('active');
+            }
+        });
+
+        // Toggle the 'active' class on the clicked dropdown
+        dropdownContent.classList.toggle('active');
+    }
+
+    // Close dropdowns if the user clicks outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown a')) {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(dropdown => {
+                if (dropdown.classList.contains('active')) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        }
+    }
+</script>
+
+</body>
+</html>

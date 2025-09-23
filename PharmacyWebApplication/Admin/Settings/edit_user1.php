@@ -1,90 +1,112 @@
 <?php
-    // Database configuration
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "Pharmacy_db4";
+session_start();
 
-    // Create a new database connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+// Database credentials
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Pharmacy_db4";
 
-    // Check if the connection was successful
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+// Create a new database connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check if the connection was successful
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$message = "";
+$user = null;
+$userId = $_GET['id'] ?? null;
+$userRole = $_GET['role'] ?? null;
+
+// Function to find the user in the appropriate table
+function findUser($conn, $id, $role) {
+    $tableName = '';
+    switch ($role) {
+        case 'admin':
+            $tableName = 'admin_users';
+            break;
+        case 'staff':
+            $tableName = 'staff_users';
+            break;
+        case 'patient':
+            $tableName = 'patient_users';
+            break;
+        default:
+            return null;
     }
 
-    $message = "";
+    $sql = "SELECT * FROM $tableName WHERE id = ?";
+    if ($stmt = $conn->prepare($sql)) {
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $stmt->close();
+        return $user;
+    }
+    return null;
+}
 
-    // A simple PHP script to process form submission.
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $firstName = $_POST['first_name'];
-        $lastName = $_POST['last_name'];
-        $phone = $_POST['phone'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $confirmPassword = $_POST['confirm_password'];
-        
-        // Basic validation
-        if (empty($firstName) || empty($lastName) || empty($phone) || empty($email) || empty($password) || empty($confirmPassword)) {
-            $message = "<div style='color: red; text-align: center; margin-bottom: 15px;'>Please fill in all fields.</div>";
-        } elseif ($password !== $confirmPassword) {
-            $message = "<div style='color: red; text-align: center; margin-bottom: 15px;'>Passwords do not match.</div>";
-        } else {
-            // Check if the table 'admin_users' exists.
-            $tableCheckQuery = "SHOW TABLES LIKE 'admin_users'";
-            $tableResult = $conn->query($tableCheckQuery);
+// Handle form submission for updating user data
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userId = htmlspecialchars($_POST['user-id']);
+    $userRole = htmlspecialchars($_POST['user-role']);
+    $firstName = htmlspecialchars($_POST['first-name']);
+    $lastName = htmlspecialchars($_POST['last-name']);
+    $email = htmlspecialchars($_POST['email']);
 
-            if ($tableResult->num_rows == 0) {
-                // If the table doesn't exist, create it.
-                // NOTE: Using 'VARCHAR' for 'phone' and 'email' for flexibility. The 'password' field should be large enough to store a hashed password.
-                $createTableSql = "CREATE TABLE admin_users (
-                    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                    first_name VARCHAR(50) NOT NULL,
-                    last_name VARCHAR(50) NOT NULL,
-                    phone VARCHAR(20) NOT NULL,
-                    email VARCHAR(100) NOT NULL,
-                    password VARCHAR(255) NOT NULL,
-                    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-                )";
+    // Check if the user is in the correct table
+    $tableName = '';
+    switch ($userRole) {
+        case 'admin':
+            $tableName = 'admin_users';
+            break;
+        case 'staff':
+            $tableName = 'staff_users';
+            break;
+        case 'patient':
+            $tableName = 'patient_users';
+            break;
+    }
 
-                if ($conn->query($createTableSql) === TRUE) {
-                    $message .= "<div style='color: green; text-align: center; margin-bottom: 5px;'>Table 'admin_users' created successfully.</div>";
-                } else {
-                    $message .= "<div style='color: red; text-align: center; margin-bottom: 5px;'>Error creating table: " . $conn->error . "</div>";
-                }
-            }
-            
-            // Hash the password for security before saving.
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-            // SQL query to insert data into the 'admin_users' table.
-            $insertSql = "INSERT INTO admin_users (first_name, last_name, phone, email, password) VALUES (?, ?, ?, ?, ?)";
-            
-            // Use a prepared statement to prevent SQL injection.
-            $stmt = $conn->prepare($insertSql);
-            $stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $hashedPassword);
-
+    if ($tableName) {
+        $sql = "UPDATE $tableName SET first_name = ?, last_name = ?, email = ? WHERE id = ?";
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("sssi", $firstName, $lastName, $email, $userId);
             if ($stmt->execute()) {
-                $message .= "<div style='color: green; text-align: center; margin-bottom: 15px;'>Admin account created successfully!</div>";
-                // Optionally, you can redirect the user after a successful sign-up.
-                // header("Location: success.php");
+                $message = "<div style='color: green; text-align: center; margin-bottom: 15px;'>User updated successfully!</div>";
+                // Re-fetch the user data to show the updated information
+                $user = findUser($conn, $userId, $userRole);
             } else {
-                $message .= "<div style='color: red; text-align: center; margin-bottom: 15px;'>Error: " . $stmt->error . "</div>";
+                $message = "<div style='color: red; text-align: center; margin-bottom: 15px;'>Error updating user: " . $stmt->error . "</div>";
             }
-
             $stmt->close();
+        } else {
+            $message = "<div style='color: red; text-align: center; margin-bottom: 15px;'>Database error: " . $conn->error . "</div>";
         }
     }
-    // Close the database connection at the end of the script.
-    $conn->close();
-?>
+} else {
+    // Initial page load: fetch user data
+    if ($userId && $userRole) {
+        $user = findUser($conn, $userId, $userRole);
+        if (!$user) {
+            $message = "<div style='color: red; text-align: center; margin-bottom: 15px;'>User not found.</div>";
+        }
+    } else {
+        $message = "<div style='color: red; text-align: center; margin-bottom: 15px;'>User ID and role are required to edit.</div>";
+    }
+}
 
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Sign In - MediCare Pharmacy</title>
+    <title>Edit User - MediCare Pharmacy</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -99,14 +121,12 @@
             --text-secondary: #4b5563;
             --accent-color: #06441d;
         }
-
         body {
             font-family: "Inter", sans-serif;
             background-color: var(--background-color);
             color: var(--text-primary);
         }
         
-        /* Updated Navigation CSS for dropdown */
         .dropdown {
             position: relative;
         }
@@ -137,112 +157,14 @@
             display: block;
         }
 
-        .header {
-            background-color: #2e7d32;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .header .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-
-        .header .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .header .search-bar {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .header .search-bar input {
-            border: none;
-            padding: 8px 30px 8px 15px;
-            border-radius: 20px;
-            outline: none;
-            background-color: white;
-        }
-
-        .header .search-bar .fa-search {
-            position: absolute;
-            right: 15px;
-            color: #555;
-        }
-
-        .top-nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .top-nav li {
-            margin-left: 20px;
-        }
-
-        .top-nav a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            transition: color 0.3s;
-        }
-
-        .top-nav a:hover {
-            color: #0c6d11ff;
-        }
-
-        .top-nav a i {
-            margin-right: 5px;
-        }
-
-        .main-nav {
-            background-color: #216124;
-            padding: 10px 20px;
-        }
-
-        .main-nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .main-nav a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            transition: background-color 0.3s;
-            padding: 10px 15px;
-        }
-
-        .main-nav a:hover {
-            background-color: #1a4d1d;
-        }
-
         .main-content {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 50px 20px;
-            min-height: calc(100vh - 180px);
         }
 
-        .signup-container {
+        .form-container {
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             padding: 40px;
@@ -251,15 +173,15 @@
             width: 100%;
         }
 
-        .signup-container h2 {
-            color: #216124;
+        .form-container h2 {
+            color: var(--accent-color);
             text-align: center;
             font-size: 1.8em;
             margin-bottom: 5px;
         }
 
-        .signup-container p {
-            color: #555;
+        .form-container p {
+            color: var(--text-secondary);
             text-align: center;
             margin-bottom: 25px;
         }
@@ -275,14 +197,19 @@
             display: flex;
             flex-direction: column;
         }
+        
+        .form-group.full-width {
+            flex: none;
+            width: 100%;
+        }
 
         .form-group label {
             font-weight: bold;
             margin-bottom: 5px;
-            color: #555;
+            color: var(--text-secondary);
         }
 
-        .form-group input {
+        .form-group input, .form-group select {
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -290,18 +217,20 @@
             width: 100%;
             box-sizing: border-box;
         }
-
-        .form-group.full-width {
-            flex: none;
-            width: 100%;
+        .form-group select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg>');
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1.5em 1.5em;
         }
 
-        .signup-button {
+        .edit-user-button {
             width: 100%;
             padding: 15px;
             border: none;
             border-radius: 8px;
-            background-color: #2e7d32;
+            background-color: #34D399; /* Updated to primary-color */
             color: white;
             font-size: 1.1em;
             cursor: pointer;
@@ -309,17 +238,16 @@
             transition: background-color 0.3s ease;
         }
 
-        .signup-button:hover {
-            background-color: #216124;
+        .edit-user-button:hover {
+            background-color: #216124; /* Updated hover color */
         }
 
-        /* Footer Styling */
         .new-footer {
-            background-color: #f0f2f5; /* Light background as in Image 2 */
-            color: #4b5563; /* Text color as in Image 2 */
+            background-color: #f0f2f5;
+            color: #4b5563;
             padding: 20px;
             text-align: center;
-            border-top: 1px solid #e5e7eb; /* Border top as in Image 2 */
+            border-top: 1px solid #e5e7eb;
         }
 
         .new-footer-content {
@@ -372,7 +300,7 @@
         }
 
         .new-footer-right .social-icons a {
-            color: #9ca3af; /* Social icon color as in Image 2 */
+            color: #9ca3af;
             font-size: 1.5rem;
             transition: color 0.3s;
         }
@@ -390,8 +318,7 @@
         }
     </style>
 </head>
-<body>
-
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
     <header class="border-b border-gray-200">
         <div class="container mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <div class="flex items-center gap-8">
@@ -402,59 +329,53 @@
                     <h1 class="text-2xl font-bold">MediCare</h1>
                 </a>
                 <nav class="hidden items-center gap-6 lg:flex">
-                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="../Home/index.html">Home</a>
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="../../Home/index.html">Home</a>
+                    
                     
                 </nav>
             </div>
             
+                
             </div>
         </div>
     </header>
 
     <main class="main-content">
-        <div class="signup-container">
-            <h2>Admin Page - Sign Up</h2>
-            <p>Fill out all the details below,</p>
+        <div class="form-container">
+            <h2>Edit User</h2>
+            <p>Update the user's information below.</p>
             <?php if (isset($message)) echo $message; ?>
+            <?php if ($user): ?>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <input type="hidden" name="user-id" value="<?php echo htmlspecialchars($user['id']); ?>">
+                <input type="hidden" name="user-role" value="<?php echo htmlspecialchars($userRole); ?>">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="first_name">First Name</label>
-                        <input type="text" id="first_name" name="first_name" placeholder="Enter First Name">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" value="<?php echo htmlspecialchars($user['first_name']); ?>" required>
                     </div>
                     <div class="form-group">
-                        <label for="last_name">Last Name</label>
-                        <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" value="<?php echo htmlspecialchars($user['last_name']); ?>" required>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Enter Your Phone Number">
-                    </div>
+                <div class="form-group full-width">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
                 </div>
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="someone@gamil.com">
+                <div class="form-group full-width">
+                        <label for="role">Role</label>
+                        <select id="role" name="role" required>
+                            <option value="" disabled selected>Select a role</option>
+                            <option value="admin">Admin</option>
+                            <option value="staff">Staff</option>
+                            <option value="patient">Patient</option>
+                        </select>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="At least 8 characters">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group full-width">
-                        <label for="confirm_password">Password (Re-Enter)</label>
-                        <input type="password" id="confirm_password" name="confirm_password" placeholder="At least 8 characters">
-                    </div>
-                </div>
-                <a href="../Home/index.html">
-                    <button type="submit" class="signup-button">Sign Up</button>
-                </a>
+                  
+                <button type="submit" class="edit-user-button">Update User</button>
             </form>
+            <?php endif; ?>
         </div>
     </main>
 
@@ -491,7 +412,6 @@
             © 2025 MediCare Pharmacy. All rights reserved.
         </div>
     </footer>
-
     <script>
         function toggleDropdown(event) {
             event.preventDefault();
@@ -519,7 +439,10 @@
                 });
             }
         }
-    </script>
 
+        document.querySelectorAll('.dropdown a').forEach(link => {
+            link.addEventListener('click', toggleDropdown);
+        });
+    </script>
 </body>
 </html>

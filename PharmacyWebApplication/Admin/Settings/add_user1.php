@@ -1,16 +1,85 @@
+<?php
+session_start();
+
+// Database credentials
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "Pharmacy_db4";
+
+// Create a new database connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check if the connection was successful
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$message = "";
+
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Sanitize and get form data
+    $firstName = htmlspecialchars($_POST['first-name']);
+    $lastName = htmlspecialchars($_POST['last-name']);
+    $email = htmlspecialchars($_POST['email']);
+    $password = htmlspecialchars($_POST['password']);
+    $role = htmlspecialchars($_POST['role']);
+
+    // Hash the password for security
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Determine the target table based on the selected role
+    $tableName = '';
+    switch ($role) {
+        case 'admin':
+            $tableName = 'admin_users';
+            break;
+        case 'staff':
+            $tableName = 'staff_users';
+            break;
+        case 'patient':
+            $tableName = 'patient_users';
+            break;
+        default:
+            $message = "<div style='color: red; text-align: center; margin-bottom: 15px;'>Invalid role selected.</div>";
+            $tableName = null;
+    }
+
+    if ($tableName) {
+        // Prepare the SQL statement to prevent SQL injection
+        $sql = "INSERT INTO $tableName (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
+        
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("ssss", $firstName, $lastName, $email, $hashedPassword);
+            
+            if ($stmt->execute()) {
+                $message = "<div style='color: green; text-align: center; margin-bottom: 15px;'>User added successfully!</div>";
+            } else {
+                $message = "<div style='color: red; text-align: center; margin-bottom: 15px;'>Error adding user: " . $stmt->error . "</div>";
+            }
+            $stmt->close();
+        } else {
+            $message = "<div style='color: red; text-align: center; margin-bottom: 15px;'>Database error: " . $conn->error . "</div>";
+        }
+    }
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Sign Up - MediCare Pharmacy</title>
+    <title>Add New User - MediCare Pharmacy</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style type="text/tailwindcss">
-        /* General Body and Fonts */
         :root {
             --primary-color: #34D399;
             --secondary-color: #f0fdf4;
@@ -20,17 +89,11 @@
             --accent-color: #06441d;
         }
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f2f5;
-            background-image: url('blurred-pharmacy-background.jpg'); /* Replace with your background image path */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            font-family: "Inter", sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
         }
         
-        /* Header and Navigation Bar Styling (reused from previous design) */
         .dropdown {
             position: relative;
         }
@@ -42,7 +105,7 @@
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 10;
             border-radius: 4px;
-            top: calc(100% + 8px); /* Position below the link */
+            top: calc(100% + 8px);
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
@@ -61,68 +124,97 @@
             display: block;
         }
 
-        /* Main Content for Category Selection */
         .main-content {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 50px 20px;
-            min-height: calc(100vh - 180px); /* Adjust based on header/footer height */
         }
 
-        .category-container {
+        .form-container {
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
             padding: 40px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
+        }
+
+        .form-container h2 {
+            color: var(--accent-color);
             text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 5px;
         }
 
-        .category-container h2 {
-            color: #2e7d32;
-            margin-bottom: 10px;
-            font-size: 2.2em;
+        .form-container p {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 25px;
         }
 
-        .category-container p {
-            color: #555;
-            margin-bottom: 30px;
-            font-size: 1.1em;
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
-        .category-buttons {
+        .form-group {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+        }
+        
+        .form-group.full-width {
+            flex: none;
+            width: 100%;
         }
 
-        .category-button {
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+        }
+
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
             width: 100%;
-            padding: 18px;
+            box-sizing: border-box;
+        }
+        .form-group select {
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.25 4.25a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg>');
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1.5em 1.5em;
+        }
+
+        .add-user-button {
+            width: 100%;
+            padding: 15px;
             border: none;
             border-radius: 8px;
-            background-color: #3f51b5; /* A primary blue color */
+            background-color: var(--primary-color);
             color: white;
-            font-size: 1.3em;
-            font-weight: bold;
+            font-size: 1.1em;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
         }
 
-        .category-button:hover {
-            background-color: #303f9f;
-            transform: translateY(-2px);
+        .add-user-button:hover {
+            background-color: #216124;
         }
 
-        /* Footer Styling (reused from previous design) */
         .new-footer {
-            background-color: #f0f2f5; /* Light background as in Image 2 */
-            color: #4b5563; /* Text color as in Image 2 */
+            background-color: #f0f2f5;
+            color: #4b5563;
             padding: 20px;
             text-align: center;
-            border-top: 1px solid #e5e7eb; /* Border top as in Image 2 */
+            border-top: 1px solid #e5e7eb;
         }
 
         .new-footer-content {
@@ -175,7 +267,7 @@
         }
 
         .new-footer-right .social-icons a {
-            color: #9ca3af; /* Social icon color as in Image 2 */
+            color: #9ca3af;
             font-size: 1.5rem;
             transition: color 0.3s;
         }
@@ -193,8 +285,7 @@
         }
     </style>
 </head>
-<body>
-
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]">
     <header class="border-b border-gray-200">
         <div class="container mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <div class="flex items-center gap-8">
@@ -205,24 +296,49 @@
                     <h1 class="text-2xl font-bold">MediCare</h1>
                 </a>
                 <nav class="hidden items-center gap-6 lg:flex">
-                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="../Home/index.html">Home</a>
+                    <a class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)]" href="../../Home/index.html">Home</a>
+                    
                     
                 </nav>
             </div>
             
+                
             </div>
         </div>
     </header>
 
     <main class="main-content">
-        <div class="category-container">
-            <h2>Sign Up</h2>
-            <p>Choose the relevant category,</p>
-            <div class="category-buttons">
-                <button class="category-button" onclick="redirectToSignUp('admin')">Admin</button>
-                <button class="category-button" onclick="redirectToSignUp('staff')">Staff</button>
-                <button class="category-button" onclick="redirectToSignUp('customer')">Patient</button>
-            </div>
+        <div class="form-container">
+            <h2>Add New User</h2>
+            <p>Fill out the form below to create a new user account.</p>
+            <?php if (isset($message)) echo $message; ?>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" placeholder="Doe" required>
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john.doe@example.com" required>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="role">Role</label>
+                    <select id="role" name="role" required>
+                        <option value="" disabled selected>Select a role</option>
+                        <option value="admin">Admin</option>
+                        <option value="staff">Staff</option>
+                        <option value="patient">Patient</option>
+                    </select>
+                </div>
+                <button type="submit" class="add-user-button">Add User</button>
+            </form>
         </div>
     </main>
 
@@ -259,38 +375,7 @@
             © 2025 MediCare Pharmacy. All rights reserved.
         </div>
     </footer>
-
     <script>
-        function redirectToSignUp(userType) {
-            // In a real application, you would redirect to a specific signup form
-            // based on the userType. For example:
-            // window.location.href = `signup_${userType}.php`;
-            alert(`Redirecting to ${userType} signup form... (This is a placeholder)`);
-            // Example:
-            // if (userType === 'admin') {
-            //     window.location.href = 'signup_admin.php';
-            // } else if (userType === 'staff') {
-            //     window.location.href = 'signup_staff.php';
-            // } else if (userType === 'customer') {
-            //     window.location.href = 'signup_customer.php';
-            // }
-        }
-
-        function redirectToSignUp(userType) {
-            // Redirect to a specific signup form based on the userType.
-            if (userType === 'admin') {
-                window.location.href = 'signup_admin.php';
-            } else if (userType === 'staff') {
-                window.location.href = 'signup_staff.php';
-            } else if (userType === 'customer') {
-                window.location.href = 'signup_patient.php';
-            } else {
-            // Optional: Handle unknown user types
-            alert('Invalid user type selected.');
-        }
-    }
-
-
         function toggleDropdown(event) {
             event.preventDefault();
             const dropdownContent = event.target.nextElementSibling;
@@ -317,7 +402,10 @@
                 });
             }
         }
-    </script>
 
+        document.querySelectorAll('.dropdown a').forEach(link => {
+            link.addEventListener('click', toggleDropdown);
+        });
+    </script>
 </body>
 </html>
