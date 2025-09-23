@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fetches the cart data from the backend API
     function fetchCart() {
         // Correct path to cart.php from the cart folder
-        fetch('../../medications/api/cart.php')
+        fetch('../Medications/api/cart.php')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

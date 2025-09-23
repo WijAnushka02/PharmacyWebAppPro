@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stitch Design</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+</head>
+<body>
+    <div class="flex min-h-screen flex-col bg-[var(--background-color)]">
+        <header class="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center gap-4">
+                <div class="size-8 text-[var(--primary-color)]">
+                    <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM12 4c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 12H9v-2h2v2zm0-4H9v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>
+                </div>
+                <h1 class="text-xl font-bold text-[var(--text-primary)]">MediCare</h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <a class="text-[var(--primary-color)] hover:text-green-700 font-medium" href="perciption_verification.html">Go Back</a>
+            </div>
+        </header>
+        <main class="flex-grow p-4 sm:p-6 lg:p-8">
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h2 class="text-2xl font-semibold text-[var(--primary-color)] mb-4" id="prescription-id">Prescription #...</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-lg font-medium text-[var(--text-primary)] mb-2">Patient Information</h3>
+                            <div class="bg-[var(--bg-light)] p-4 rounded-md space-y-2">
+                                <p><strong class="font-medium text-[var(--text-primary)]">Patient Name:</strong> <span class="text-[var(--text-secondary)]" id="patient-name">...</span></p>
+                                <p><strong class="font-medium text-[var(--text-primary)]">Date of Birth:</strong> <span class="text-[var(--text-secondary)]" id="patient-dob">...</span></p>
+                                <p><strong class="font-medium text-[var(--text-primary)]">Address:</strong> <span class="text-[var(--text-secondary)]" id="patient-address">...</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 bg-white rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Verification Actions</h3>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button id="approve-button" class="w-full bg-[var(--primary-color)] text-white px-6 py-3 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition duration-200 ease-in-out font-semibold flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Approve
+                        </button>
+                        <button id="reject-button" class="w-full bg-[var(--secondary-color)] text-[var(--primary-color)] border border-[var(--primary-color)] px-6 py-3 rounded-md hover:bg-[var(--primary-color)] hover:text-white focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition duration-200 ease-in-out font-semibold flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">cancel</span>
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="bg-white">
+            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm text-[var(--text-secondary)]">
+                © 2025 MediCare. All rights reserved.
+            </div>
+        </footer>
+    </div>
+    <script src="details.js"></script>
+</body>
+</html>

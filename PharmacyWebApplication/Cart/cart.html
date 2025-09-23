@@ -11,9 +11,9 @@
   <header class="site-header">
     <div class="logo">MediCare</div>
     <nav class="nav-links">
-      <a href="../../Home/home1/index.html">Home</a>
-      <a href="../../medications/public/index.html">Medications</a>
-      <a href="../../Home/offers/offers.html">Offers</a>
+      <a href="../Home/index.html">Home</a>
+      <a href="../Medications/public/index.html">Medications</a>
+      <a href="../Offers/offers.html">Offers</a>
     </nav>
     <div class="header-icons">
       <a href="cart.html" class="cart-icon">🛒</a>
@@ -23,7 +23,7 @@
   <main class="cart-container">
     <div id="emptyCart" class="empty-cart">
       <p>Your cart is empty. Please add items to continue.</p>
-      <a href="medications.html" class="btn">Start Shopping</a>
+      <a href="../Medications/public/index.html" class="btn">Start Shopping</a>
     </div>
 
     <div id="cartContent" class="cart-content">
@@ -33,7 +33,7 @@
             </div>
         <hr>
         <p class="total">Total: <span id="total">Rs. 0.00</span></p>
-        <button class="checkout-btn">Proceed to Checkout</button>
+        <button class="checkout-btn" onclick="window.location.href='../Payment/payment_slip.html'">Proceed to Checkout</button>
       </aside>
     </div>
   </main>

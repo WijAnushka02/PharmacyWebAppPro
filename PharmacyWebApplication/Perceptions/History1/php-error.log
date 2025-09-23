@@ -1,0 +1,45 @@
+[22-Sep-2025 18:57:45 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'pharmacy_db4.medicine_contains_perception' doesn't exist in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php:55
+Stack trace:
+#0 D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php(55): mysqli->query('SELECT\r\n       ...')
+#1 {main}
+  thrown in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php on line 55
+[22-Sep-2025 18:58:48 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'pharmacy_db4.medicine_contains_perception' doesn't exist in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php:55
+Stack trace:
+#0 D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php(55): mysqli->query('SELECT\r\n       ...')
+#1 {main}
+  thrown in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php on line 55
+[22-Sep-2025 19:04:15 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'pharmacy_db4.medicine_contains_perception' doesn't exist in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php:54
+Stack trace:
+#0 D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php(54): mysqli->query('SELECT\r\n       ...')
+#1 {main}
+  thrown in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php on line 54
+[22-Sep-2025 19:04:25 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'pharmacy_db4.medicine_contains_perception' doesn't exist in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php:54
+Stack trace:
+#0 D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php(54): mysqli->query('SELECT\r\n       ...')
+#1 {main}
+  thrown in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php on line 54
+[22-Sep-2025 19:06:13 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'pharmacy_db4.medicine_contains_perception' doesn't exist in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php:58
+Stack trace:
+#0 D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php(58): mysqli->query('SELECT\r\n       ...')
+#1 {main}
+  thrown in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php on line 58
+[22-Sep-2025 19:06:27 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'pharmacy_db4.medicine_contains_perception' doesn't exist in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php:58
+Stack trace:
+#0 D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php(58): mysqli->query('SELECT\r\n       ...')
+#1 {main}
+  thrown in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php on line 58
+[22-Sep-2025 19:06:33 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'pharmacy_db4.medicine_contains_perception' doesn't exist in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php:58
+Stack trace:
+#0 D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php(58): mysqli->query('SELECT\r\n       ...')
+#1 {main}
+  thrown in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php on line 58
+[22-Sep-2025 19:06:41 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'pharmacy_db4.medicine_contains_perception' doesn't exist in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php:58
+Stack trace:
+#0 D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php(58): mysqli->query('SELECT\r\n       ...')
+#1 {main}
+  thrown in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php on line 58
+[22-Sep-2025 19:08:20 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Table 'pharmacy_db4.medicine_contains_perception' doesn't exist in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php:58
+Stack trace:
+#0 D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php(58): mysqli->query('SELECT\r\n       ...')
+#1 {main}
+  thrown in D:\Xampp\htdocs\pharmacyWebPro\PharmacyWebAppPro\PharmacyWebApplication\Perceptions\History1\api.php on line 58
