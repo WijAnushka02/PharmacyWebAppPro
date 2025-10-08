@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2025 at 11:15 AM
+-- Generation Time: Oct 08, 2025 at 05:15 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pharmacy_db`
+-- Database: `pharmacy_db4`
 --
 
 -- --------------------------------------------------------
@@ -103,6 +103,30 @@ INSERT INTO `admin_users` (`id`, `first_name`, `last_name`, `phone`, `email`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Pain Relief'),
+(2, 'Antibiotics'),
+(3, 'Vitamins'),
+(4, 'Cough & Cold'),
+(5, 'First Aid'),
+(6, 'Allergy'),
+(7, 'Digestion');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customer`
 --
 
@@ -135,30 +159,57 @@ INSERT INTO `customer` (`Customer_ID`, `Patient_name`, `DoB`, `Phone`, `Email`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `medicine`
+-- Table structure for table `medications`
 --
 
-CREATE TABLE `medicine` (
+CREATE TABLE `medications` (
   `Medicine_ID` int(11) NOT NULL,
-  `Medicine_name` varchar(255) DEFAULT NULL,
-  `Description` text DEFAULT NULL
+  `Medicine_name` varchar(100) NOT NULL,
+  `generic_name` varchar(100) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `dosage_form` varchar(50) DEFAULT NULL,
+  `package_size` varchar(50) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `stock_quantity` int(11) DEFAULT NULL,
+  `manufacturer` varchar(100) DEFAULT NULL,
+  `prescription_required` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `medicine`
+-- Dumping data for table `medications`
 --
 
-INSERT INTO `medicine` (`Medicine_ID`, `Medicine_name`, `Description`) VALUES
-(501, 'Paracetamol', 'Pain reliever and fever reducer'),
-(502, 'Amoxicillin', 'Antibiotic for bacterial infections'),
-(503, 'Ibuprofen', 'NSAID for pain and inflammation'),
-(504, 'Atorvastatin', 'Treats high cholesterol'),
-(505, 'Lisinopril', 'ACE inhibitor for high blood pressure'),
-(506, 'Metformin', 'Manages blood sugar levels for type 2 diabetes'),
-(507, 'Salbutamol', 'Bronchodilator for asthma'),
-(508, 'Omeprazole', 'Reduces stomach acid'),
-(509, 'Ciprofloxacin', 'Broad-spectrum antibiotic'),
-(510, 'Levothyroxine', 'Treats hypothyroidism');
+INSERT INTO `medications` (`Medicine_ID`, `Medicine_name`, `generic_name`, `category_id`, `description`, `image_url`, `dosage_form`, `package_size`, `price`, `stock_quantity`, `manufacturer`, `prescription_required`) VALUES
+(501, 'Panadol', 'Paracetamol', 1, 'Used to relieve fever and mild pain', 'images/panadol.jpeg', '500mg tablets', 'Pack of 10', 120.00, 100, 'GSK Pharma', 0),
+(502, 'Cetirizine', 'Cetirizine Hydrochloride', 6, 'Used to treat allergies', 'images/cetirizine.jpeg', '10mg tablets', 'Pack of 10', 150.00, 200, 'Cipla', 0),
+(503, 'Panadol', 'Paracetamol', 1, 'Reduces fever and relieves mild to moderate pain', 'images/panadol.jpeg', '500mg tablets', 'Pack of 10', 120.00, 100, 'GSK Pharma', 0),
+(504, 'Tylenol', 'Paracetamol', 1, 'Pain reliever and fever reducer', 'images/tylenol.jpeg', '650mg tablets', 'Pack of 20', 250.00, 80, 'Johnson & Johnson', 0),
+(505, 'Calpol', 'Paracetamol', 1, 'Liquid syrup for children', 'images/calpol.jpeg', 'Syrup', '100ml bottle', 180.00, 50, 'GSK Pharma', 0),
+(506, 'Advil', 'Ibuprofen', 1, 'Reduces fever, pain, and inflammation', 'images/advil.jpeg', '200mg tablets', 'Pack of 12', 200.00, 120, 'Pfizer', 0),
+(507, 'Nurofen', 'Ibuprofen', 1, 'Pain and inflammation relief', 'images/nurofen.jpeg', '400mg tablets', 'Pack of 10', 300.00, 90, 'Reckitt Benckiser', 0),
+(508, 'Disprin', 'Aspirin', 1, 'Pain reliever and fever reducer (not for children)', 'images/disprin.jpeg', '325mg tablets', 'Pack of 10', 100.00, 70, 'Bayer', 0),
+(509, 'Sudafed', 'Pseudoephedrine', 4, 'Decongestant for stuffy nose', 'images/sudafed.jpeg', 'Tablets', 'Pack of 10', 220.00, 40, 'Johnson & Johnson', 1),
+(510, 'Robitussin', 'Dextromethorphan', 4, 'Cough suppressant for dry cough', 'images/robitussin.jpeg', 'Syrup', '100ml bottle', 190.00, 60, 'Pfizer', 0),
+(511, 'Mucinex', 'Guaifenesin', 4, 'Expectorant for chesty cough', 'images/mucinex.jpeg', 'Tablets', 'Pack of 12', 260.00, 50, 'Reckitt Benckiser', 0),
+(512, 'Zyrtec', 'Cetirizine', 6, 'Non-drowsy antihistamine for allergies', 'images/zyrtec.jpeg', '10mg tablets', 'Pack of 10', 150.00, 100, 'UCB Pharma', 0),
+(513, 'Claritin', 'Loratadine', 6, 'Non-drowsy antihistamine for sneezing and runny nose', 'images/claritin.jpeg', '10mg tablets', 'Pack of 10', 170.00, 120, 'Bayer', 0),
+(514, 'Allegra', 'Fexofenadine', 6, 'Non-drowsy antihistamine', 'images/allegra.jpeg', '180mg tablets', 'Pack of 10', 200.00, 80, 'Sanofi', 0),
+(515, 'Benadryl', 'Diphenhydramine', 4, 'Antihistamine that may cause drowsiness', 'images/benadryl.jpeg', '25mg capsules', 'Pack of 12', 140.00, 90, 'Johnson & Johnson', 0),
+(516, 'Flonase', 'Fluticasone Propionate', 6, 'Corticosteroid nasal spray for allergy symptoms', 'images/flonase.jpeg', 'Nasal Spray', '16g bottle', 320.00, 60, 'GSK Pharma', 1),
+(517, 'Centrum', 'Multivitamins', 3, 'Daily supplement for overall nutrition', 'images/centrum.jpeg', 'Tablets', 'Pack of 30', 500.00, 150, 'Pfizer', 0),
+(518, 'Berocca', 'Multivitamins', 3, 'Effervescent tablets with vitamins and minerals', 'images/berocca.jpeg', 'Effervescent tablets', 'Pack of 10', 350.00, 100, 'Bayer', 0),
+(519, 'Redoxon', 'Vitamin C', 3, 'Vitamin C tablets for immune support', 'images/redoxon.jpeg', '1000mg tablets', 'Pack of 10', 280.00, 120, 'Bayer', 0),
+(520, 'Caltrate', 'Calcium + Vitamin D', 3, 'Supports bone health', 'images/caltrate.jpeg', 'Tablets', 'Pack of 30', 600.00, 80, 'Pfizer', 0),
+(521, 'Nature\'s Bounty Fish Oil', 'Omega-3 Fatty Acids', 3, 'Supports heart and brain health', 'images/fishoil.jpeg', 'Softgel capsules', 'Pack of 60', 950.00, 70, 'Nature\'s Bounty', 0),
+(522, 'Ferrous Sulphate', 'Iron', 3, 'Treats iron-deficiency anemia', 'images/iron.jpeg', 'Tablets', 'Pack of 30', 300.00, 60, 'Cipla', 0),
+(523, 'Align', 'Probiotics', 3, 'Supports gut health and digestion', 'images/align.jpeg', 'Capsules', 'Pack of 30', 800.00, 50, 'Procter & Gamble', 0),
+(524, 'Aleve', 'Naproxen Sodium', 1, 'Long-lasting pain reliever for minor aches and pains', 'images/aleve.jpeg', '220mg tablets', 'Pack of 12', 240.00, 90, 'Bayer', 0),
+(525, 'Pepcid AC', 'Famotidine', 7, 'Acid reducer for heartburn relief', 'images/pepcid.jpeg', '20mg tablets', 'Pack of 10', 200.00, 70, 'Johnson & Johnson', 0),
+(526, 'Tums', 'Calcium Carbonate', 7, 'Antacid for quick relief from heartburn', 'images/tums.jpeg', 'Chewable tablets', 'Pack of 12', 180.00, 100, 'GSK Pharma', 0),
+(527, 'Cortizone-10', 'Hydrocortisone', 5, '1% cream for skin irritation and rashes', 'images/cortizone.jpeg', 'Topical cream', '30g tube', 220.00, 60, 'Chattem', 0),
+(528, 'Neosporin', 'Bacitracin + Neomycin', 5, 'Topical ointment for preventing infection in cuts and burns', 'images/neosporin.jpeg', 'Ointment', '20g tube', 300.00, 40, 'Johnson & Johnson', 0);
 
 -- --------------------------------------------------------
 
@@ -238,7 +289,8 @@ CREATE TABLE `patient_users` (
 --
 
 INSERT INTO `patient_users` (`id`, `first_name`, `last_name`, `phone`, `address`, `email`, `password`, `reg_date`) VALUES
-(1, 'Anushka', 'Wijesinghe', '0781847525', 'cn n cnmbvbxc mjhdhfhjdsh\r\ncbjhbvc\r\nbcbzhbcbv', 'anushkadilinuwan03@gmail.com', '$2y$10$mal38sLXIpdW1n6R.3hh7.9RTgik44aUI2kNzoSdTEqx7NpCB33jG', '2025-09-15 10:08:03');
+(1, 'Anushka', 'Wijesinghe', '0781847525', 'cn n cnmbvbxc mjhdhfhjdsh\r\ncbjhbvc\r\nbcbzhbcbv', 'anushkadilinuwan03@gmail.com', '$2y$10$mal38sLXIpdW1n6R.3hh7.9RTgik44aUI2kNzoSdTEqx7NpCB33jG', '2025-09-15 10:08:03'),
+(2, 'Dilum', 'Palawaththa', '', '', 'palawaththadilum@gmail.com', '$2y$10$D5a.luPf6CsvzL4rNOE73.wPV/6CM1DbZnmXRc.F0icrrGPp5eqba', '2025-09-23 18:40:35');
 
 -- --------------------------------------------------------
 
@@ -271,6 +323,17 @@ INSERT INTO `perception` (`Perception_ID`, `Status`, `Image_url`, `Issue_date`, 
 (608, 'Pending', 'http://example.com/rx_8.jpg', '2025-08-28', '2026-08-28', 308, 508),
 (609, 'Verified', 'http://example.com/rx_9.jpg', '2025-09-01', '2026-09-01', 309, 509),
 (610, 'Verified', 'http://example.com/rx_10.jpg', '2025-09-05', '2026-09-05', 310, 510);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `permission_id` int(11) NOT NULL,
+  `permission_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -377,13 +440,31 @@ INSERT INTO `stock` (`Medicine_ID`, `Quantity_in_stock`, `Exp_Date`, `Unit_price
 (501, 150, '2026-12-31', 1.50),
 (502, 75, '2026-11-30', 2.50),
 (503, 200, '2027-01-15', 1.25),
-(504, 90, '2026-10-20', 3.75),
+(504, 90, '2026-11-20', 3.75),
 (505, 60, '2026-09-10', 4.50),
 (506, 120, '2027-02-01', 2.25),
 (507, 85, '2026-08-05', 3.00),
 (508, 100, '2026-12-01', 5.00),
 (509, 110, '2027-03-01', 0.99),
-(510, 130, '2026-10-15', 3.50);
+(510, 130, '2026-10-15', 3.50),
+(511, 80, '2026-10-25', 5.20),
+(512, 120, '2027-01-10', 3.00),
+(513, 90, '2027-02-15', 3.40),
+(514, 100, '2027-03-20', 4.00),
+(515, 75, '2026-11-05', 2.80),
+(516, 50, '2027-04-30', 6.40),
+(517, 200, '2027-05-15', 10.00),
+(518, 150, '2026-12-01', 7.00),
+(519, 130, '2027-01-25', 5.60),
+(520, 110, '2027-02-28', 12.00),
+(521, 65, '2026-10-18', 19.00),
+(522, 85, '2027-03-12', 6.00),
+(523, 70, '2027-04-05', 16.00),
+(524, 95, '2026-11-22', 4.80),
+(525, 105, '2027-01-19', 4.00),
+(526, 125, '2026-12-28', 3.60),
+(527, 80, '2024-02-09', 4.40),
+(528, 60, '2027-03-17', 6.00);
 
 -- --------------------------------------------------------
 
@@ -416,6 +497,31 @@ INSERT INTO `supplier` (`Supplier_ID`, `Supplier_name`, `Telephone`, `Contact`, 
 (209, 'Synergy Meds', '555-317-318', 'Daniel Evans', 'synergy@synergy.com', '606 Synergy Sq'),
 (210, 'Vitality Vends', '555-319-320', 'Olivia Miller', 'vitality@vitality.com', '707 Vitality Path');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('pharmacist','patient','supplier','admin') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_permissions`
+--
+
+CREATE TABLE `user_permissions` (
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -441,6 +547,12 @@ ALTER TABLE `admin_users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -448,10 +560,10 @@ ALTER TABLE `customer`
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
--- Indexes for table `medicine`
+-- Indexes for table `medications`
 --
-ALTER TABLE `medicine`
-  ADD PRIMARY KEY (`Medicine_ID`);
+ALTER TABLE `medications`
+  ADD KEY `medications_ibfk_1` (`category_id`);
 
 --
 -- Indexes for table `order`
@@ -480,6 +592,13 @@ ALTER TABLE `perception`
   ADD PRIMARY KEY (`Perception_ID`),
   ADD KEY `Customer_ID` (`Customer_ID`),
   ADD KEY `Medicine_ID` (`Medicine_ID`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`permission_id`),
+  ADD UNIQUE KEY `permission_name` (`permission_name`);
 
 --
 -- Indexes for table `staff`
@@ -517,6 +636,20 @@ ALTER TABLE `supplier`
   ADD UNIQUE KEY `Email` (`Email`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `user_permissions`
+--
+ALTER TABLE `user_permissions`
+  ADD PRIMARY KEY (`user_id`,`permission_id`),
+  ADD KEY `permission_id` (`permission_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -527,16 +660,34 @@ ALTER TABLE `admin_users`
   MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `patient_users`
 --
 ALTER TABLE `patient_users`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `permission_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `staff_users`
 --
 ALTER TABLE `staff_users`
   MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -550,6 +701,12 @@ ALTER TABLE `admin_staff_role`
   ADD CONSTRAINT `admin_staff_role_ibfk_2` FOREIGN KEY (`Pharmacist_ID`) REFERENCES `staff` (`Pharmacist_ID`);
 
 --
+-- Constraints for table `medications`
+--
+ALTER TABLE `medications`
+  ADD CONSTRAINT `medications_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+
+--
 -- Constraints for table `order`
 --
 ALTER TABLE `order`
@@ -559,29 +716,27 @@ ALTER TABLE `order`
 -- Constraints for table `order_contains_medicine`
 --
 ALTER TABLE `order_contains_medicine`
-  ADD CONSTRAINT `order_contains_medicine_ibfk_1` FOREIGN KEY (`Order_ID`) REFERENCES `order` (`Order_ID`),
-  ADD CONSTRAINT `order_contains_medicine_ibfk_2` FOREIGN KEY (`Medicine_ID`) REFERENCES `medicine` (`Medicine_ID`);
+  ADD CONSTRAINT `order_contains_medicine_ibfk_1` FOREIGN KEY (`Order_ID`) REFERENCES `order` (`Order_ID`);
 
 --
 -- Constraints for table `perception`
 --
 ALTER TABLE `perception`
-  ADD CONSTRAINT `perception_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`),
-  ADD CONSTRAINT `perception_ibfk_2` FOREIGN KEY (`Medicine_ID`) REFERENCES `medicine` (`Medicine_ID`);
+  ADD CONSTRAINT `perception_ibfk_1` FOREIGN KEY (`Customer_ID`) REFERENCES `customer` (`Customer_ID`);
 
 --
 -- Constraints for table `staff_supplies_medicine`
 --
 ALTER TABLE `staff_supplies_medicine`
   ADD CONSTRAINT `staff_supplies_medicine_ibfk_1` FOREIGN KEY (`Pharmacist_ID`) REFERENCES `staff` (`Pharmacist_ID`),
-  ADD CONSTRAINT `staff_supplies_medicine_ibfk_2` FOREIGN KEY (`Supplier_ID`) REFERENCES `supplier` (`Supplier_ID`),
-  ADD CONSTRAINT `staff_supplies_medicine_ibfk_3` FOREIGN KEY (`Medicine_ID`) REFERENCES `medicine` (`Medicine_ID`);
+  ADD CONSTRAINT `staff_supplies_medicine_ibfk_2` FOREIGN KEY (`Supplier_ID`) REFERENCES `supplier` (`Supplier_ID`);
 
 --
--- Constraints for table `stock`
+-- Constraints for table `user_permissions`
 --
-ALTER TABLE `stock`
-  ADD CONSTRAINT `stock_ibfk_1` FOREIGN KEY (`Medicine_ID`) REFERENCES `medicine` (`Medicine_ID`);
+ALTER TABLE `user_permissions`
+  ADD CONSTRAINT `user_permissions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`permission_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
